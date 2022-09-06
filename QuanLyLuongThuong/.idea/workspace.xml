@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e2162719-1b74-4964-a366-c1feec2a475f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/QuanLyLuongThuong.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saveID.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/BaoTriThongTinHeSoLuongController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/BaoTriThongTinHocPhanController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/BaoTriThongTinNhanVienController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/BaoTriThongTinPhongBanController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/BaoTriThongTinPhuCapController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/BaoTriThongTinTaiKhoanController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/BaoTriThongTinTienThuongController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/DangKyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/DangNhapController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/QuanLyThongTinCaNhanController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Controller/XemThongTinCaNhanController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/BaseModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/ChamCong.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/HeSoLuong.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/HocPhan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/NhanVien.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/NhanVienDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/PhongBan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/PhuCap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/TaiKhoan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/Model/Thuong.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/QuanLyLuongThuong.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinChamCong/BaoTriThongTinChamCongUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinChamCong/BaoTriThongTinChamCongUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinHeSoLuong/BaoTriThongTinHeSoLuongUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinHeSoLuong/BaoTriThongTinHeSoLuongUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinHocPhan/BaoTriThongTinHocPhanUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinHocPhan/BaoTriThongTinHocPhanUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinNhanVien/BaoTriThongTinNhanVienUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinNhanVien/BaoTriThongTinNhanVienUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinPhongBan/BaoTriThongTinPhongBanUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinPhongBan/BaoTriThongTinPhongBanUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinPhuCap/BaoTriThongTinPhuCapUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinPhuCap/BaoTriThongTinPhuCapUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinTaiKhoan/BaoTriThongTinTaiKhoanUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinTaiKhoan/BaoTriThongTinTaiKhoanUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinTienThuong/BaoTriThongTinTienThuongUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/BaoTriThongTinTienThuong/BaoTriThongTinTienThuongUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/ChamCongGiangDay/ChamCongGiangDayUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/ChamCongGiangDay/ChamCongGiangDayUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/DangKy/DangKyUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/DangKy/DangKyUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/DangKy/TaoTaiKhoanBoiAdminUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/DangKy/TaoTaiKhoanBoiAdminUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/DangNhap/DangNhapUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/DangNhap/DangNhapUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/QuanLyThongTinCaNhan/QuanLyThongTinCaNhanUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/QuanLyThongTinCaNhan/QuanLyThongTinCaNhanUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuAdmin/TrangChuAdminUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuAdmin/TrangChuAdminUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuGiamDoc/TrangChuGiamDocUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuGiamDoc/TrangChuGiamDocUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuKeToan/TrangChuKeToanUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuKeToan/TrangChuKeToanUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuNguoiDung/TrangChuNguoiDungUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuNguoiDung/TrangChuNguoiDungUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuNhanSu/TrangChuNhanSuUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TrangChu/TrangChuNhanSu/TrangChuNhanSuUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/TuyChonUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemChiTietLuongCaNhan/XemChiTietLuongCaNhanUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemChiTietLuongCaNhan/XemChiTietLuongCaNhanUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemChiTietLuongTungNhanSu/XemChiTietLuongTungNhanSuUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemChiTietLuongTungNhanSu/XemChiTietLuongTungNhanSuUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemThongKeLuongCaCongTy/XemThongKeLuongCaCongTyUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemThongKeLuongCaCongTy/XemThongKeLuongCaCongTyUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemThongTinNhanVien/XemThongTinNhanVienUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemThongTinNhanVien/XemThongTinNhanVienUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemThongTinPhuCap/XemThongTinPhuCapUI.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/View/XemThongTinPhuCap/XemThongTinPhuCapUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/util/IOptionEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/util/ISendDataToAnotherGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/util/IUpdateTableEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/util/KetNoiCSDL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhom7/quanlyluong/util/XuLyFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../QuanLyLuongThuong_MySQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../QuanLyLuongThuong_MySQL.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2EP44EzEriOXULRlp8jiOifEWZ0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/Java-Swing-HaUI/QuanLyLuongThuong"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e2162719-1b74-4964-a366-c1feec2a475f" name="Changes" comment="" />
+      <created>1662483699956</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662483699956</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
