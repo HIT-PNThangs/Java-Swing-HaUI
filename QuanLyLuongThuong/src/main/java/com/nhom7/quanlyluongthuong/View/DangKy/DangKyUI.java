@@ -209,14 +209,15 @@ public class DangKyUI extends javax.swing.JFrame {
            matKhau = matKhau.trim();
            if("".equals(taiKhoan) || "".equals(matKhau)){
                throw new Exception("Không được để trống mật khẩu");
-           }
-           
-           if(!matKhau.equals(nhapLaiMatKhau)){
+           } else if(!matKhau.equals(nhapLaiMatKhau)){
                throw new Exception("Mật Khẩu Không Trùng Nhau");
+           } else {
+                JOptionPane.showMessageDialog(this.getContentPane(), DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen)), "Thông Báo", JOptionPane.OK_OPTION);
+                if (DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen)).equals("Tạo Tài Khoản Thành Công")) {
+                    new DangNhapUI().onStartGUI();
+                    this.dispose();
+                }
            }
-           
-           JOptionPane.showMessageDialog(this.getContentPane(), DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen)), "Thông Báo", JOptionPane.OK_OPTION);
-           onClear();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this.getContentPane(), ex.getMessage(), "Thông Báo", JOptionPane.OK_OPTION);
             ex.printStackTrace();

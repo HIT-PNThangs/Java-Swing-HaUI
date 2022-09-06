@@ -161,22 +161,25 @@ public class DangNhapUI extends javax.swing.JFrame {
         try {
             String username = txtTaiKhoan.getText();
             String password = String.valueOf(txtPassword.getPassword());
-            
+
             username = username.trim();
             password = password.trim();
+
             
             if("".equals(username) || "".equals(password)){
                 throw new Exception("Không được để trống thông tin");
+            } else {
+                TaiKhoan taiKhoan = new TaiKhoan(username, password);
+                JOptionPane.showMessageDialog(this.getContentPane(), DangNhapController.onLoginEvent(taiKhoan), "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
+                if (DangNhapController.onLoginEvent(taiKhoan).equals("Đăng Nhập Thành Công")) {
+                    this.dispose();
+                }
+                if(chkSavePassword.isSelected()){
+                    XuLyFile.luuTaiKhoan(taiKhoan);
+                }
             }
             
-            TaiKhoan taiKhoan = new TaiKhoan(username, password);
-            JOptionPane.showMessageDialog(this.getContentPane(), DangNhapController.onLoginEvent(taiKhoan), "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
             
-            if(chkSavePassword.isSelected()){
-                XuLyFile.luuTaiKhoan(taiKhoan);
-            }  
-            
-            this.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this.getContentPane(), e.toString(), "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
         }
