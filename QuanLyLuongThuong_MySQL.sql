@@ -328,6 +328,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-select * from taikhoan;
+select count(*) from TAIKHOAN where taikhoan = 'pnt123' and matkhau = 'pnt123';
+select mataikhoan, taikhoan, quyen from taikhoan where taikhoan = 'pnt123' and matkhau = 'pnt123';
 
 -- Dump completed on 2022-06-30 17:20:26

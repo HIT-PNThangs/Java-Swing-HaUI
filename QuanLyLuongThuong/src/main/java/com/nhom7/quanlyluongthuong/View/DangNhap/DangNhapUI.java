@@ -179,8 +179,8 @@ public class DangNhapUI extends javax.swing.JFrame {
             String username = txtTaiKhoan.getText();
             String password = String.valueOf(txtPassword.getPassword());
             
-            username= username.trim();
-            password= password.trim();
+            username = username.trim();
+            password = password.trim();
             
             if("".equals(username) || "".equals(password)){
                 throw new Exception("Không được để trống thông tin");
@@ -232,13 +232,11 @@ public class DangNhapUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new DangNhapUI().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new DangNhapUI().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(DangNhapUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

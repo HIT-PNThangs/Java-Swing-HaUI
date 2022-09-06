@@ -17,17 +17,15 @@ import java.util.HashMap;
 public class DangNhapController {
 
     private static final String findExistUser
-            = "select count(*) from TAIKHOAN where taikhoan = ? "
-            + "and matkhau = ?";
+            = "select count(*) from TAIKHOAN where taikhoan = ? and matkhau = ?";
 
     private static final String quyenNguoiDung
-            = "select mataikhoan, taikhoan, quyen from taikhoan"
+            = "select mataikhoan, taikhoan, quyen from taikhoan "
             + "where taikhoan = ? and matkhau = ?";
 
     public static String onLoginEvent(TaiKhoan taiKhoan) {
         try {
             Connection connection = KetNoiCSDL.getConnection();
-
             //Xử lý tìm tài khoản tồn tại
             PreparedStatement preparedStatement = connection.prepareStatement(findExistUser);
             preparedStatement.setString(1, taiKhoan.getTaiKhoan());
@@ -47,7 +45,6 @@ public class DangNhapController {
 
             ResultSet resultSet1 = preparedStatement1.executeQuery();
             resultSet1.next();
-
             int ID = resultSet1.getInt(1);
             XuLyFile.luuIDTaiKhoan(ID);
             String tenTaiKhoan = resultSet1.getString(2);
@@ -62,18 +59,22 @@ public class DangNhapController {
                     TrangChuAdminUI trangChuAdminUI = new TrangChuAdminUI(data);
                     trangChuAdminUI.onStartGUI();
                 }
+                
                 case 1 -> {
                     TrangChuNguoiDungUI trangChuNguoiDungUI = new TrangChuNguoiDungUI(data);
                     trangChuNguoiDungUI.onStartGUI();
                 }
+                
                 case 2 -> {
                     TrangChuKeToanUI trangChuKeToanUI = new TrangChuKeToanUI(data);
                     trangChuKeToanUI.onStartGUI();
                 }
+                
                 case 3 -> {
                     TrangChuNhanSuUI trangChuNhanSuUI = new TrangChuNhanSuUI(data);
                     trangChuNhanSuUI.onStartGUI();
                 }
+                
                 case 4 -> {
                     TrangChuGiamDocUI trangChuGiamDocUI = new TrangChuGiamDocUI(data);
                     trangChuGiamDocUI.onStartGUI();
