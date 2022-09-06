@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nhom7.quanlyluongthuong.Controller;
 
 import com.nhom7.quanlyluongthuong.Model.PhuCap;
@@ -14,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Admin
- */
 public class BaoTriThongTinPhuCapController {
     private static final String QUERY_ALL_PHUCAP = "select * from PHUCAP";
     private static final String INSERT_NEW_PHUCAP = "insert into PHUCAP(TENPHUCAP, TIENPHUCAP) values(?,?)";

@@ -10,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Admin
- */
 public class BaoTriThongTinHeSoLuongController {
     private static IUpdateTableEvent iUpdateTableEvent;
     private static final String SELECT_ALL_HESOLUONG = "select * from HeSoLuong";

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nhom7.quanlyluongthuong.Controller;
 
 import com.nhom7.quanlyluongthuong.Model.HeSoLuong;
@@ -18,10 +14,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-/**
- *
- * @author Admin
- */
 public class BaoTriThongTinNhanVienController {
     private static IUpdateTableEvent iUpdateTableEvent;
     

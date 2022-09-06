@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nhom7.quanlyluongthuong.Controller;
 
 import com.nhom7.quanlyluongthuong.Model.Thuong;
@@ -14,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Admin
- */
 public class BaoTriThongTinTienThuongController {
     private static final String QUERY_ALL_TIENTHUONG = "select * from THUONG";
     private static final String INSERT_NEW_TIENTHUONG = "insert into THUONG(TENTHUONG, TIENTHUONG) values(?,?)";

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nhom7.quanlyluongthuong.Controller;
 
 import com.nhom7.quanlyluongthuong.Model.HocPhan;
@@ -14,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Admin
- */
 public class BaoTriThongTinHocPhanController {
     private static final String QUERY_ALL_HOCPHAN = "select * from HocPhan";
     private static final String INSERT_NEW_HOCPHAN = "insert into HocPhan(TenHocPhan,SoTinChi) values(?,?)";

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nhom7.quanlyluongthuong.Controller;
 
 import com.nhom7.quanlyluongthuong.Model.NhanVien;
@@ -12,10 +8,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author Admin
- */
 public class XemThongTinCaNhanController {
     private static final String GET_USER_INFO = "select TenNhanVien, GioiTinh, NgaySinh,"
     + " DiaChi, ChucVu, TrinhDo from NhanVien" +

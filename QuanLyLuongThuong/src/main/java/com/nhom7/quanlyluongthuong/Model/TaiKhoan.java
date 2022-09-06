@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.nhom7.quanlyluongthuong.Model;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Admin
- */
 public class TaiKhoan extends BaseModel implements Serializable{
     private long maTaiKhoan;
     private String taiKhoan;

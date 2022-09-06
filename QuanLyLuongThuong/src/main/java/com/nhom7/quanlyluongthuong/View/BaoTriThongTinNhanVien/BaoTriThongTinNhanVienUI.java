@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.nhom7.quanlyluongthuong.View.BaoTriThongTinNhanVien;
 
 import com.nhom7.quanlyluongthuong.Controller.BaoTriThongTinNhanVienController;
@@ -26,24 +22,18 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import com.nhom7.quanlyluongthuong.util.ISendDataToAnotherGUI;
 
-/**
- *
- * @author Administrator
- */
 public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
     private final BaoTriThongTinNhanVienController controller;
     private ArrayList<PhongBan> phongBans;
     private ArrayList<HeSoLuong> heSoLuongs;
     private final TaoTaiKhoanBoiAdminUI taoTaiKhoanBoiAdminUI;
-    /**
-     * Creates new form BaoTriThongTinNhanVienUI
-     */
+
     private HashMap<String, Object> data;
-    
+
     public void setData(HashMap<String, Object> data) {
         this.data = data;
     }
-    
+
     public BaoTriThongTinNhanVienUI() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
@@ -70,77 +60,74 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void FirstTimeDataCall() throws SQLException
-    {
+
+    private void FirstTimeDataCall() throws SQLException {
         phongBans = controller.onWriteComboBoxPhongBan();
         cboPhongBan.removeAllItems();
-        
+
         for (PhongBan phongBan : phongBans) {
             cboPhongBan.addItem(phongBan.toString());
         }
-        
+
         heSoLuongs = controller.onWriteComboBoxHeSoLuong();
         cboHeSoLuong.removeAllItems();
-        
+
         for (HeSoLuong heSoLuong : heSoLuongs) {
             cboHeSoLuong.addItem(heSoLuong.toString());
         }
-        
+
         cboPhongBan.setSelectedIndex(0);
         cboHeSoLuong.setSelectedIndex(0);
-        
+
         UpdateTable();
     }
-    
-    private void UpdateTable() throws SQLException
-    {
+
+    private void UpdateTable() throws SQLException {
         ArrayList<NhanVienDTO> nhanVienDTOs = controller.onQueryAllTableNhanVien();
-        
+
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblNhanVien.getModel();
-        
-        while(defaultTableModel.getRowCount() > 0){
+
+        while (defaultTableModel.getRowCount() > 0) {
             defaultTableModel.removeRow(0);
         }
-        
+
         for (NhanVienDTO nhanVienDTO : nhanVienDTOs) {
             defaultTableModel.addRow(nhanVienDTO.toObjectArrayData());
         }
     }
-    
+
     private boolean validateData() {
         String message = "";
         int numErr = 0;
         try {
-            if(txtDiaChi.getText().trim().equalsIgnoreCase("")){
+            if (txtDiaChi.getText().trim().equalsIgnoreCase("")) {
                 message += "Địa Chỉ không được để trống!!\n";
                 numErr += 1;
             }
-   
-            if(txtNgaySinh.getDate().toString().trim().equalsIgnoreCase("")){
+
+            if (txtNgaySinh.getDate().toString().trim().equalsIgnoreCase("")) {
                 message += "Ngày Sinh không được để trống!!\n";
                 numErr += 1;
             }
-            
-            if(txtTenNhanVien.getText().trim().equalsIgnoreCase("")){
+
+            if (txtTenNhanVien.getText().trim().equalsIgnoreCase("")) {
                 message += "Tên Nhân Viên không được để trống!!\n";
                 numErr += 1;
             }
-            
-            if(txtTenTaiKhoan.getText().trim().equalsIgnoreCase("")){
+
+            if (txtTenTaiKhoan.getText().trim().equalsIgnoreCase("")) {
                 message += "Tên Tài Khoản không được để trống!!\n";
                 numErr += 1;
             }
-            
-            if(numErr > 0)
-            {
+
+            if (numErr > 0) {
                 throw new Exception(message);
             }
-            
+
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(getContentPane(), message);
-        } 
+        }
         return false;
     }
 
@@ -156,6 +143,7 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         cboTrinhDo.setSelectedIndex(0);
         rdNam.setSelected(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -198,6 +186,7 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bảo Trì Thông Tin Nhân Viên");
+        setResizable(false);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, jLabel1.getFont().getSize()+11));
         jLabel1.setText("Bảo trì thông tin Nhân Viên");
@@ -484,7 +473,7 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         tuyChonUI.setOnHandleOptionEvent(new IOptionEvent() {
             @Override
             public void onAcceptEvent() {
-                if(validateData()) {
+                if (validateData()) {
                     NhanVien nhanVien = new NhanVien();
                     nhanVien.setGioiTinh(rdNam.isSelected() ? 0 : 1);
                     nhanVien.setDiaChi(txtDiaChi.getText().trim());
@@ -499,7 +488,7 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
                     } catch (SQLException ex) {
                         Logger.getLogger(BaoTriThongTinNhanVienUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                     try {
                         controller.addNhanVien(nhanVien);
                     } catch (SQLException ex) {
@@ -515,7 +504,7 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
                 clearAllTextBox();
             }
         });
-        
+
         tuyChonUI.onCallGUI(getContentPane(), "Bạn có chắc chắn muốn thêm Nhân Viên này không ?", "Thông Báo");
     }//GEN-LAST:event_btnThemNhanVienActionPerformed
 
@@ -524,12 +513,12 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         tuyChonUI.setOnHandleOptionEvent(new IOptionEvent() {
             @Override
             public void onAcceptEvent() {
-                if(validateData()) {
-                    if(txtMaNhanVien.getText().equals("")){
+                if (validateData()) {
+                    if (txtMaNhanVien.getText().equals("")) {
                         JOptionPane.showMessageDialog(getContentPane(), "Bạn chưa chọn Nhân Viên cần xóa!!");
                         return;
                     }
-                    
+
                     NhanVien nhanVien = new NhanVien();
                     nhanVien.setGioiTinh(rdNam.isSelected() ? 0 : 1);
                     nhanVien.setDiaChi(txtDiaChi.getText().trim());
@@ -540,13 +529,13 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
                     nhanVien.setMaPhongBan(phongBans.get(cboPhongBan.getSelectedIndex()).getMaPhong());
                     nhanVien.setMaHeSoLuong(heSoLuongs.get(cboHeSoLuong.getSelectedIndex()).getMaHeSoLuong());
                     nhanVien.setMaNhanVien(Long.parseLong(txtMaNhanVien.getText()));
-                    
+
                     try {
                         nhanVien.setMaTaiKhoan(controller.onFindAccountID(txtTenTaiKhoan.getText().trim()));
                     } catch (SQLException ex) {
                         Logger.getLogger(BaoTriThongTinNhanVienUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                     try {
                         controller.modifyNhanVienByID(nhanVien);
                     } catch (SQLException ex) {
@@ -562,7 +551,7 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
                 clearAllTextBox();
             }
         });
-        
+
         tuyChonUI.onCallGUI(getContentPane(), "Bạn có chắc chắn muốn sửa Nhân Viên này không ?", "Thông Báo");
     }//GEN-LAST:event_btnSuaNhanVienActionPerformed
 
@@ -571,18 +560,18 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         tuyChonUI.setOnHandleOptionEvent(new IOptionEvent() {
             @Override
             public void onAcceptEvent() {
-                if(validateData()){
-                    if(txtMaNhanVien.getText().equals("")){
+                if (validateData()) {
+                    if (txtMaNhanVien.getText().equals("")) {
                         JOptionPane.showMessageDialog(getContentPane(), "Bạn chưa chọn Nhân Viên cần xóa!!");
                         return;
                     }
-                    
+
                     try {
                         controller.deleteNhanVienByID(Long.parseLong(txtMaNhanVien.getText().trim()));
                     } catch (SQLException ex) {
                         Logger.getLogger(BaoTriThongTinNhanVienUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                     clearAllTextBox();
                     JOptionPane.showMessageDialog(getContentPane(), "Xóa Nhân Viên thành công!!");
                 }
@@ -599,7 +588,7 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         TuyChonUI tuyChonUI = new TuyChonUI();
         tuyChonUI.setOnHandleOptionEvent(new IOptionEvent() {
             @Override
-            public void onAcceptEvent(){ 
+            public void onAcceptEvent() {
                 clearAllTextBox();
                 JOptionPane.showMessageDialog(getContentPane(), "Xóa thông tin thành công!!");
             }
@@ -609,14 +598,14 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
                 clearAllTextBox();
             }
         });
-        
+
         tuyChonUI.onCallGUI(getContentPane(), "Bạn có chắc chắn muốn xóa thông tin này không ?", "Thông Báo");
     }//GEN-LAST:event_btnXoaThongTinActionPerformed
 
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
         int rowIndex = tblNhanVien.getSelectedRow();
         TableModel model = tblNhanVien.getModel();
-        
+
         String maNhanVien = tblNhanVien.getValueAt(rowIndex, 0).toString();
         String tenNhanVien = tblNhanVien.getValueAt(rowIndex, 1).toString();
         String gioiTinh = tblNhanVien.getValueAt(rowIndex, 2).toString();
@@ -627,56 +616,53 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         String tenTaiKhoan = tblNhanVien.getValueAt(rowIndex, 7).toString();
         String heSoLuong = tblNhanVien.getValueAt(rowIndex, 8).toString();
         String phongBan = tblNhanVien.getValueAt(rowIndex, 9).toString();
-        
+
         txtMaNhanVien.setText(maNhanVien);
         txtTenNhanVien.setText(tenNhanVien);
-        
-        if(gioiTinh.toLowerCase().trim().equals("nam")){
+
+        if (gioiTinh.toLowerCase().trim().equals("nam")) {
             rdNam.setSelected(true);
-        }
-        else{
+        } else {
             rdNu.setSelected(true);
         }
-        
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-M-dd");
         try {
             txtNgaySinh.setDate(simpleDateFormat.parse(ngaySinh));
         } catch (ParseException ex) {
             Logger.getLogger(BaoTriThongTinNhanVienUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         txtDiaChi.setText(diaChi);
-        
-        for(int i = 0; i < cboChucVu.getItemCount() ; i++)
-        {
-            if(cboChucVu.getItemAt(i).equals(chucVu)){
+
+        for (int i = 0; i < cboChucVu.getItemCount(); i++) {
+            if (cboChucVu.getItemAt(i).equals(chucVu)) {
                 cboChucVu.setSelectedIndex(i);
                 break;
             }
         }
-        
-        for(int i = 0; i < cboTrinhDo.getItemCount() ; i++)
-        {
-            if(cboTrinhDo.getItemAt(i).equals(trinhDo)){
+
+        for (int i = 0; i < cboTrinhDo.getItemCount(); i++) {
+            if (cboTrinhDo.getItemAt(i).equals(trinhDo)) {
                 cboTrinhDo.setSelectedIndex(i);
                 break;
             }
         }
-        
+
         txtTenTaiKhoan.setText(tenTaiKhoan);
-        
-        for(int i = 0 ; i < cboHeSoLuong.getItemCount(); i++){
+
+        for (int i = 0; i < cboHeSoLuong.getItemCount(); i++) {
             var temp1 = Float.parseFloat(cboHeSoLuong.getItemAt(i));
             var temp2 = Float.parseFloat(heSoLuong);
-            
-            if(temp1 == temp2){
+
+            if (temp1 == temp2) {
                 cboHeSoLuong.setSelectedIndex(i);
                 break;
             }
         }
-        
-        for(int i = 0 ; i < cboPhongBan.getItemCount(); i++){
-            if(cboPhongBan.getItemAt(i).equals(phongBan)){
+
+        for (int i = 0; i < cboPhongBan.getItemCount(); i++) {
+            if (cboPhongBan.getItemAt(i).equals(phongBan)) {
                 cboPhongBan.setSelectedIndex(i);
                 break;
             }
