@@ -18,6 +18,8 @@
 --
 -- Table structure for table `chamcong`
 --
+create database quanlyluongthuong;
+use quanlyluongthuong;
 
 DROP TABLE IF EXISTS `chamcong`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
