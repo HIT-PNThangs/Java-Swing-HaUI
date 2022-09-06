@@ -2,7 +2,6 @@ package com.nhom7.quanlyluongthuong.View.QuanLyThongTinCaNhan;
 
 import com.nhom7.quanlyluongthuong.Controller.QuanLyThongTinCaNhanController;
 import com.nhom7.quanlyluongthuong.Model.NhanVien;
-import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuNguoiDung.TrangChuNguoiDungUI;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -11,12 +10,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
+
     private QuanLyThongTinCaNhanController controller;
     private HashMap<String, Object> data;
 
     public QuanLyThongTinCaNhanUI() {
     }
-   
+
     public void setData(HashMap<String, Object> data) {
         this.data = data;
     }
@@ -53,6 +53,7 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
         btnQuayLai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, jLabel1.getFont().getSize()+11));
         jLabel1.setText("Thông Tin Cá Nhân");
@@ -129,8 +130,7 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(rdNam)
                                 .addGap(18, 18, 18)
-                                .addComponent(rdNu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(rdNu))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addComponent(txtHoTen))))
@@ -199,7 +199,7 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSuaThongTinCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThongTinCaNhanActionPerformed
-        
+
     }//GEN-LAST:event_btnSuaThongTinCaNhanActionPerformed
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
@@ -230,7 +230,7 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             try {
@@ -241,34 +241,33 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
         });
     }
 
-    private void initData() throws SQLException{
+    private void initData() throws SQLException {
         NhanVien nhanVien = controller.onQueryUserInfo((int) data.get("ID"));
-        if(nhanVien != null)
-        {
+        if (nhanVien != null) {
             txtHoTen.setText(nhanVien.getTenNhanVien());
             txtNgaySinh.setDate(new Date(nhanVien.getNgaySinh().getTime()));
             txtDiaChi.setText(nhanVien.getDiaChi());
 
-            for(int i = 0; i < cboChucVu.getItemCount() ; i++){
-                if(cboChucVu.getItemAt(i).equalsIgnoreCase(nhanVien.getChucVu())){
+            for (int i = 0; i < cboChucVu.getItemCount(); i++) {
+                if (cboChucVu.getItemAt(i).equalsIgnoreCase(nhanVien.getChucVu())) {
                     cboChucVu.setSelectedIndex(i);
                     break;
                 }
             }
 
-            for(int i = 0; i < cboTrinhDo.getItemCount() ; i++){
-                if(cboTrinhDo.getItemAt(i).equalsIgnoreCase(nhanVien.getTrinhDo())){
+            for (int i = 0; i < cboTrinhDo.getItemCount(); i++) {
+                if (cboTrinhDo.getItemAt(i).equalsIgnoreCase(nhanVien.getTrinhDo())) {
                     cboTrinhDo.setSelectedIndex(i);
                     break;
                 }
             }
 
-            if(nhanVien.getGioiTinh() == 0){
+            if (nhanVien.getGioiTinh() == 0) {
                 rdNam.setSelected(true);
-            }else{
+            } else {
                 rdNu.setSelected(true);
             }
-        } 
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnQuayLai;
