@@ -2,6 +2,7 @@ package com.nhom7.quanlyluongthuong.View.BaoTriThongTinPhongBan;
 
 import com.nhom7.quanlyluongthuong.Controller.BaoTriThongTinPhongBanController;
 import com.nhom7.quanlyluongthuong.Model.PhongBan;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin.TrangChuAdminUI;
 import com.nhom7.quanlyluongthuong.View.TuyChonUI;
 import com.nhom7.quanlyluongthuong.util.IOptionEvent;
 import com.nhom7.quanlyluongthuong.util.IUpdateTableEvent;
@@ -19,11 +20,8 @@ public class BaoTriThongTinPhongBanUI extends javax.swing.JFrame {
     private final BaoTriThongTinPhongBanController baoTriThongTinPhongBanController;
     private HashMap<String, Object> data;
 
-    public void setData(HashMap<String, Object> data) {
+    public BaoTriThongTinPhongBanUI(HashMap<String, Object> data) throws SQLException {
         this.data = data;
-    }
-
-    public BaoTriThongTinPhongBanUI() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         txtTenPhong.requestFocus();
@@ -73,6 +71,7 @@ public class BaoTriThongTinPhongBanUI extends javax.swing.JFrame {
         btnSuaPhongBan = new javax.swing.JButton();
         btnXoaPhongBan = new javax.swing.JButton();
         btnXoaThongTin = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bảo trì thông tin Phòng Ban");
@@ -160,14 +159,17 @@ public class BaoTriThongTinPhongBanUI extends javax.swing.JFrame {
             }
         });
 
+        back.setText("Quay lại");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(277, 277, 277))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -186,9 +188,6 @@ public class BaoTriThongTinPhongBanUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtTenTruongPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(btnThemPhongBan)
                         .addGap(18, 18, 18)
@@ -196,14 +195,25 @@ public class BaoTriThongTinPhongBanUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnXoaPhongBan)
                         .addGap(18, 18, 18)
-                        .addComponent(btnXoaThongTin)))
+                        .addComponent(btnXoaThongTin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(back)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(245, 245, 245))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -363,6 +373,12 @@ public class BaoTriThongTinPhongBanUI extends javax.swing.JFrame {
         txtTenTruongPhong.setText(tenTruongPhong);
     }//GEN-LAST:event_tblPhongBanMouseClicked
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        new TrangChuAdminUI(data).onStartGUI();
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
+
     public void clearAllTextBox() {
         txtMaPhong.setText("");
         txtTenPhong.setText("");
@@ -397,7 +413,7 @@ public class BaoTriThongTinPhongBanUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new BaoTriThongTinPhongBanUI().setVisible(true);
+                    new BaoTriThongTinPhongBanUI(data).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(BaoTriThongTinPhongBanUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -431,6 +447,7 @@ public class BaoTriThongTinPhongBanUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton btnSuaPhongBan;
     private javax.swing.JButton btnThemPhongBan;
     private javax.swing.JButton btnXoaPhongBan;

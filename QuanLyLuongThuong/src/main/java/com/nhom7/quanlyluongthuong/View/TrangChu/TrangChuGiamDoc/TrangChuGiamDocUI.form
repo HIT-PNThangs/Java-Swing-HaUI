@@ -24,24 +24,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="66" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButton2" min="-2" pref="458" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="btnDangXuat" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="xemThongTinPhuCap" min="-2" pref="458" max="-2" attributes="0"/>
+                              <Component id="xemThongTinNhanVien" alignment="1" min="-2" pref="458" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="btnXemChiTietLuongCaNhan" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnSuaThongTinCaNhan" min="-2" pref="226" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="btnXemChiTietLuongCaNhan1" alignment="1" min="-2" pref="455" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnXemChiTietLuongCaNhan2" alignment="1" min="-2" pref="455" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jButton1" alignment="1" min="-2" pref="458" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnXemChiTietLuongCaNhan" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnSuaThongTinCaNhan" min="-2" pref="226" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="btnXemChiTietLuongCaNhan1" alignment="1" min="-2" pref="455" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btnXemChiTietLuongCaNhan2" alignment="1" min="-2" pref="455" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="btnDangXuat" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
           </Group>
@@ -61,9 +66,9 @@
                   <Component id="btnSuaThongTinCaNhan" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="xemThongTinNhanVien" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Component id="xemThongTinPhuCap" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnXemChiTietLuongCaNhan1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -118,21 +123,24 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaThongTinCaNhanActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="xemThongTinNhanVien">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
           <FontInfo relative="true">
-            <Font component="jButton1" property="font" relativeSize="true" size="3"/>
+            <Font component="xemThongTinNhanVien" property="font" relativeSize="true" size="3"/>
           </FontInfo>
         </Property>
         <Property name="text" type="java.lang.String" value="Xem Th&#xf4;ng Tin Nh&#xe2;n Vi&#xea;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xemThongTinNhanVienActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="xemThongTinPhuCap">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
           <FontInfo relative="true">
-            <Font component="jButton2" property="font" relativeSize="true" size="3"/>
+            <Font component="xemThongTinPhuCap" property="font" relativeSize="true" size="3"/>
           </FontInfo>
         </Property>
         <Property name="text" type="java.lang.String" value="Xem Th&#xf4;ng Tin Ph&#x1ee5; C&#x1ea5;p"/>

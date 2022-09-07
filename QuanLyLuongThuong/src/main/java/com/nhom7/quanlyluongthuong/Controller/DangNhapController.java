@@ -22,7 +22,7 @@ public class DangNhapController {
     private static final String quyenNguoiDung
             = "select mataikhoan, taikhoan, quyen from taikhoan "
             + "where taikhoan = ? and matkhau = ?";
-
+    
     public static String onLoginEvent(TaiKhoan taiKhoan) {
         try {
             Connection connection = KetNoiCSDL.getConnection();
@@ -53,7 +53,7 @@ public class DangNhapController {
             HashMap<String, Object> data = new HashMap<>();
             data.put("TenTaiKhoan", tenTaiKhoan);
             data.put("ID", ID);
-
+            data.put("Quyen", quyen);
             switch (quyen) {
                 case 0 -> {
                     TrangChuAdminUI trangChuAdminUI = new TrangChuAdminUI(data);
@@ -80,7 +80,6 @@ public class DangNhapController {
                     trangChuGiamDocUI.onStartGUI();
                 }
             }
-
             return "Đăng Nhập Thành Công";
         } catch (Exception ex) {
             return ex.toString();

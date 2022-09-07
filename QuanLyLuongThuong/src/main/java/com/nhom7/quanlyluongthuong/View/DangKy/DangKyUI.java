@@ -44,7 +44,7 @@ public class DangKyUI extends javax.swing.JFrame {
         jLabel1.setText("Đăng Ký");
 
         btnHuyBo.setFont(btnHuyBo.getFont().deriveFont(btnHuyBo.getFont().getSize()+3f));
-        btnHuyBo.setText("Hủy Bỏ");
+        btnHuyBo.setText("Quay lại");
         btnHuyBo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHuyBoActionPerformed(evt);
@@ -152,38 +152,39 @@ public class DangKyUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnHuyBo)
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnDangKy)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnXoaThongTin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnHuyBo)
-                        .addGap(41, 41, 41))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDangKy)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnXoaThongTin)
+                                .addGap(10, 10, 10))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(btnHuyBo))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDangKy)
-                    .addComponent(btnHuyBo)
-                    .addComponent(btnXoaThongTin))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnXoaThongTin)
+                    .addComponent(btnDangKy))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,8 +213,9 @@ public class DangKyUI extends javax.swing.JFrame {
            } else if(!matKhau.equals(nhapLaiMatKhau)){
                throw new Exception("Mật Khẩu Không Trùng Nhau");
            } else {
-                JOptionPane.showMessageDialog(this.getContentPane(), DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen)), "Thông Báo", JOptionPane.OK_OPTION);
-                if (DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen)).equals("Tạo Tài Khoản Thành Công")) {
+               String thongbao = DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen));
+                JOptionPane.showMessageDialog(this.getContentPane(), thongbao, "Thông Báo", JOptionPane.OK_OPTION);
+                if (thongbao.equals("Tạo Tài Khoản Thành Công")) {
                     new DangNhapUI().onStartGUI();
                     this.dispose();
                 }

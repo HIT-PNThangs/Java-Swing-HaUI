@@ -124,7 +124,8 @@ public class TrangChuKeToanUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXemChiTietLuongCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietLuongCaNhanActionPerformed
-        new XemChiTietLuongCaNhanUI().onStartGUI();
+        new XemChiTietLuongCaNhanUI(data).onStartGUI();
+        dispose();
     }//GEN-LAST:event_btnXemChiTietLuongCaNhanActionPerformed
 
     private void btnSuaThongTinCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThongTinCaNhanActionPerformed

@@ -2,6 +2,7 @@ package com.nhom7.quanlyluongthuong.View.BaoTriThongTinHocPhan;
 
 import com.nhom7.quanlyluongthuong.Controller.BaoTriThongTinHocPhanController;
 import com.nhom7.quanlyluongthuong.Model.HocPhan;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin.TrangChuAdminUI;
 import com.nhom7.quanlyluongthuong.View.TuyChonUI;
 import com.nhom7.quanlyluongthuong.util.IOptionEvent;
 import com.nhom7.quanlyluongthuong.util.IUpdateTableEvent;
@@ -19,12 +20,9 @@ public class BaoTriThongTinHocPhanUI extends javax.swing.JFrame {
     private BaoTriThongTinHocPhanController controller;
 
     private HashMap<String, Object> data;
-
-    public void setData(HashMap<String, Object> data) {
+    
+    public BaoTriThongTinHocPhanUI(HashMap<String, Object> data) throws SQLException {
         this.data = data;
-    }
-
-    public BaoTriThongTinHocPhanUI() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         txtTenHocPhan.requestFocus();
@@ -96,6 +94,7 @@ public class BaoTriThongTinHocPhanUI extends javax.swing.JFrame {
         btnThemHocPhan = new javax.swing.JButton();
         btnSuaHocPhan = new javax.swing.JButton();
         btnXoaThongTin = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bảo trì thông tin Học Phần");
@@ -185,23 +184,24 @@ public class BaoTriThongTinHocPhanUI extends javax.swing.JFrame {
             }
         });
 
+        back.setText("Quay lại");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(45, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(75, 75, 75))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(159, 159, 159)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -216,23 +216,33 @@ public class BaoTriThongTinHocPhanUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtSoTinChi, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                                     .addComponent(txtMaHocPhan)
-                                    .addComponent(txtTenHocPhan)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(btnThemHocPhan)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSuaHocPhan)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXoaHocPhan)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXoaThongTin)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtTenHocPhan)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(btnThemHocPhan)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSuaHocPhan)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnXoaHocPhan)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnXoaThongTin))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(back)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(75, 75, 75)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -387,6 +397,12 @@ public class BaoTriThongTinHocPhanUI extends javax.swing.JFrame {
         tuyChonUI.onCallGUI(getContentPane(), "Bạn có chắc chắn muốn xóa thông tin này không ?", "Thông Báo");
     }//GEN-LAST:event_btnXoaThongTinActionPerformed
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        new TrangChuAdminUI(data).onStartGUI();
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
+
     public void onStartGUI() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -415,7 +431,7 @@ public class BaoTriThongTinHocPhanUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new BaoTriThongTinHocPhanUI().setVisible(true);
+                    new BaoTriThongTinHocPhanUI(data).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(BaoTriThongTinHocPhanUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -424,6 +440,7 @@ public class BaoTriThongTinHocPhanUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton btnSuaHocPhan;
     private javax.swing.JButton btnThemHocPhan;
     private javax.swing.JButton btnXoaHocPhan;

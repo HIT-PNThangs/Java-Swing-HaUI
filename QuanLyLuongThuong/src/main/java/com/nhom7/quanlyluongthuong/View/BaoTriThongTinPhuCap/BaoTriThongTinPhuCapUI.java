@@ -2,6 +2,7 @@ package com.nhom7.quanlyluongthuong.View.BaoTriThongTinPhuCap;
 
 import com.nhom7.quanlyluongthuong.Controller.BaoTriThongTinPhuCapController;
 import com.nhom7.quanlyluongthuong.Model.PhuCap;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin.TrangChuAdminUI;
 import com.nhom7.quanlyluongthuong.View.TuyChonUI;
 import com.nhom7.quanlyluongthuong.util.IOptionEvent;
 import com.nhom7.quanlyluongthuong.util.IUpdateTableEvent;
@@ -22,8 +23,9 @@ public class BaoTriThongTinPhuCapUI extends javax.swing.JFrame {
     public void setData(HashMap<String, Object> data) {
         this.data = data;
     }
-
-    public BaoTriThongTinPhuCapUI() throws SQLException {
+    
+    public BaoTriThongTinPhuCapUI(HashMap<String, Object> data)throws SQLException {
+        this.data = data;
         initComponents();
         setLocationRelativeTo(null);
         txtTenPhuCap.requestFocus();
@@ -42,7 +44,7 @@ public class BaoTriThongTinPhuCapUI extends javax.swing.JFrame {
             }
         });
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -60,6 +62,7 @@ public class BaoTriThongTinPhuCapUI extends javax.swing.JFrame {
         txtTenPhuCap = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtTienPhuCap = new javax.swing.JTextField();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bảo Trì Thông Tin Phụ Cấp");
@@ -147,15 +150,19 @@ public class BaoTriThongTinPhuCapUI extends javax.swing.JFrame {
 
         txtTienPhuCap.setFont(txtTienPhuCap.getFont().deriveFont(txtTienPhuCap.getFont().getSize()+3f));
 
+        back.setText("Quay lại");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(btnThemPhuCap)
@@ -164,35 +171,41 @@ public class BaoTriThongTinPhuCapUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnXoaPhuCap)
                         .addGap(18, 18, 18)
-                        .addComponent(btnXoaThongTin)))
+                        .addComponent(btnXoaThongTin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(back)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(208, 208, 208))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(83, 83, 83)
+                        .addComponent(txtTienPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(83, 83, 83)
-                                .addComponent(txtTienPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(86, 86, 86)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMaPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTenPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(156, 156, 156))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(243, 243, 243))))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMaPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTenPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(156, 156, 156))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -349,6 +362,12 @@ public class BaoTriThongTinPhuCapUI extends javax.swing.JFrame {
         txtTienPhuCap.setText(tienPhuCap);
     }//GEN-LAST:event_tblPhuCapMouseClicked
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        new TrangChuAdminUI(data).onStartGUI();
+        this.dispose();
+    }//GEN-LAST:event_backActionPerformed
+
     public void clearAllTextBox() {
         txtMaPhuCap.setText("");
         txtTenPhuCap.setText("");
@@ -413,7 +432,7 @@ public class BaoTriThongTinPhuCapUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new BaoTriThongTinPhuCapUI().setVisible(true);
+                    new BaoTriThongTinPhuCapUI(data).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(BaoTriThongTinPhuCapUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -422,6 +441,7 @@ public class BaoTriThongTinPhuCapUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton btnSuaPhuCap;
     private javax.swing.JButton btnThemPhuCap;
     private javax.swing.JButton btnXoaPhuCap;

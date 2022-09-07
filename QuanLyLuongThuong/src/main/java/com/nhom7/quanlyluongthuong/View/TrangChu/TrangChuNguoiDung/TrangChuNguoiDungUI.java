@@ -1,8 +1,10 @@
 package com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuNguoiDung;
 
+import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
 import com.nhom7.quanlyluongthuong.View.DangNhap.DangNhapUI;
 import com.nhom7.quanlyluongthuong.View.XemChiTietLuongCaNhan.XemChiTietLuongCaNhanUI;
 import com.nhom7.quanlyluongthuong.View.QuanLyThongTinCaNhan.QuanLyThongTinCaNhanUI;
+import com.nhom7.quanlyluongthuong.util.XuLyFile;
 import java.io.IOException;
 
 import java.sql.SQLException;
@@ -20,7 +22,9 @@ public class TrangChuNguoiDungUI extends javax.swing.JFrame {
     public TrangChuNguoiDungUI(HashMap<String, Object> data) {
         this.data = data;
         initComponents();
-        setLocationRelativeTo(null);  
+        setLocationRelativeTo(null);
+        String res1 = String.format("Xin chào, " + data.get("TenTaiKhoan"));
+        lblUsername.setText(res1);
     }
 
     @SuppressWarnings("unchecked")
@@ -114,8 +118,7 @@ public class TrangChuNguoiDungUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaThongTinCaNhanActionPerformed
 
     private void btnXemChiTietLuongCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietLuongCaNhanActionPerformed
-        XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI();
-        xemChiTietLuongCaNhanUI.setData(data);
+        XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI(data);
         xemChiTietLuongCaNhanUI.onStartGUI();
     }//GEN-LAST:event_btnXemChiTietLuongCaNhanActionPerformed
 
@@ -123,6 +126,7 @@ public class TrangChuNguoiDungUI extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             new DangNhapUI().onStartGUI();
+            XuLyFile.luuTaiKhoan(new TaiKhoan("",""));
         } catch (IOException ex) {
             Logger.getLogger(TrangChuNguoiDungUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,12 +156,7 @@ public class TrangChuNguoiDungUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TrangChuNguoiDungUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        String res1 = String.format("Xin chào, %s", data.get("TenTaiKhoan"));
-        System.out.println("res1: " + res1);
-        lblUsername.setText(res1);
-        super.update(getGraphics());
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

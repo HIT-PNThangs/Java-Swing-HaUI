@@ -6,6 +6,7 @@ import com.nhom7.quanlyluongthuong.Model.NhanVien;
 import com.nhom7.quanlyluongthuong.Model.NhanVienDTO;
 import com.nhom7.quanlyluongthuong.Model.PhongBan;
 import com.nhom7.quanlyluongthuong.View.DangKy.TaoTaiKhoanBoiAdminUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin.TrangChuAdminUI;
 import com.nhom7.quanlyluongthuong.View.TuyChonUI;
 import com.nhom7.quanlyluongthuong.util.IOptionEvent;
 import com.nhom7.quanlyluongthuong.util.IUpdateTableEvent;
@@ -30,15 +31,12 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
 
     private HashMap<String, Object> data;
 
-    public void setData(HashMap<String, Object> data) {
+    public BaoTriThongTinNhanVienUI(HashMap<String, Object> data) throws SQLException {
         this.data = data;
-    }
-
-    public BaoTriThongTinNhanVienUI() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         controller = new BaoTriThongTinNhanVienController();
-        taoTaiKhoanBoiAdminUI = new TaoTaiKhoanBoiAdminUI();
+        taoTaiKhoanBoiAdminUI = new TaoTaiKhoanBoiAdminUI(data);
         taoTaiKhoanBoiAdminUI.setPutDataInterface(new ISendDataToAnotherGUI() {
             @Override
             public void onGetData(HashMap<String, Object> getObjectData) {
@@ -176,13 +174,13 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         btnXoaNhanVien = new javax.swing.JButton();
         btnXoaThongTin = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        btnTaoTaiKhoan = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtTenTaiKhoan = new javax.swing.JTextField();
         cboHeSoLuong = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         cboPhongBan = new javax.swing.JComboBox<>();
         txtNgaySinh = new com.toedter.calendar.JDateChooser();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bảo Trì Thông Tin Nhân Viên");
@@ -302,14 +300,6 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         jLabel9.setFont(jLabel9.getFont().deriveFont(jLabel9.getFont().getSize()+3f));
         jLabel9.setText("Tên Tài Khoản: ");
 
-        btnTaoTaiKhoan.setFont(btnTaoTaiKhoan.getFont().deriveFont(btnTaoTaiKhoan.getFont().getSize()+3f));
-        btnTaoTaiKhoan.setText("Tạo Tài Khoản Mới");
-        btnTaoTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaoTaiKhoanActionPerformed(evt);
-            }
-        });
-
         jLabel10.setFont(jLabel10.getFont().deriveFont(jLabel10.getFont().getSize()+3f));
         jLabel10.setText("Hệ Số Lương: ");
 
@@ -324,6 +314,13 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
 
         txtNgaySinh.setDateFormatString("yyyy-M-dd");
         txtNgaySinh.setFont(txtNgaySinh.getFont().deriveFont(txtNgaySinh.getFont().getSize()+3f));
+
+        back.setText("Quay lại");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -344,41 +341,39 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
                 .addComponent(btnXoaThongTin)
                 .addGap(205, 205, 205))
             .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(100, 100, 100))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(70, 70, 70)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cboChucVu, 0, 197, Short.MAX_VALUE)
-                            .addComponent(txtMaNhanVien)
-                            .addComponent(txtTenNhanVien)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rdNam)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdNu))
-                            .addComponent(txtNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(34, 34, 34)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addGap(100, 100, 100))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(70, 70, 70)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cboChucVu, 0, 197, Short.MAX_VALUE)
+                                    .addComponent(txtMaNhanVien)
+                                    .addComponent(txtTenNhanVien)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rdNam)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdNu))
+                                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(back))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTenTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnTaoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTenTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel10)
@@ -401,21 +396,23 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
                                         .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(cboPhongBan, 0, 257, Short.MAX_VALUE)
-                                            .addComponent(cboTrinhDo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(cboTrinhDo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                    .addComponent(jLabel2))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel2)
-                    .addComponent(txtTenTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTaoTaiKhoan))
+                    .addComponent(txtTenTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -463,10 +460,6 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTaoTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoTaiKhoanActionPerformed
-        taoTaiKhoanBoiAdminUI.onStartGUI();
-    }//GEN-LAST:event_btnTaoTaiKhoanActionPerformed
 
     private void btnThemNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemNhanVienActionPerformed
         TuyChonUI tuyChonUI = new TuyChonUI();
@@ -669,6 +662,12 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblNhanVienMouseClicked
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        new TrangChuAdminUI(data).onStartGUI();
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -700,7 +699,7 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new BaoTriThongTinNhanVienUI().setVisible(true);
+                    new BaoTriThongTinNhanVienUI(data).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(BaoTriThongTinNhanVienUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -709,8 +708,8 @@ public class BaoTriThongTinNhanVienUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton btnSuaNhanVien;
-    private javax.swing.JButton btnTaoTaiKhoan;
     private javax.swing.JButton btnThemNhanVien;
     private javax.swing.JButton btnXoaNhanVien;
     private javax.swing.JButton btnXoaThongTin;

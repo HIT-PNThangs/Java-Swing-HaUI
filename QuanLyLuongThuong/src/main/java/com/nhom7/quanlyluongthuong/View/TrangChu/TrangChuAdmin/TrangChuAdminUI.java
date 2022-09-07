@@ -1,5 +1,7 @@
 package com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin;
 
+import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
+import com.nhom7.quanlyluongthuong.View.BaoTriThongTinChamCong.BaoTriThongTinChamCongUI;
 import com.nhom7.quanlyluongthuong.View.BaoTriThongTinHeSoLuong.BaoTriThongTinHeSoLuongUI;
 import com.nhom7.quanlyluongthuong.View.BaoTriThongTinHocPhan.BaoTriThongTinHocPhanUI;
 import com.nhom7.quanlyluongthuong.View.BaoTriThongTinNhanVien.BaoTriThongTinNhanVienUI;
@@ -7,18 +9,22 @@ import com.nhom7.quanlyluongthuong.View.BaoTriThongTinPhongBan.BaoTriThongTinPho
 import com.nhom7.quanlyluongthuong.View.BaoTriThongTinPhuCap.BaoTriThongTinPhuCapUI;
 import com.nhom7.quanlyluongthuong.View.BaoTriThongTinTaiKhoan.BaoTriThongTinTaiKhoanUI;
 import com.nhom7.quanlyluongthuong.View.BaoTriThongTinTienThuong.BaoTriThongTinTienThuongUI;
+import com.nhom7.quanlyluongthuong.View.DangNhap.DangNhapUI;
 import com.nhom7.quanlyluongthuong.View.QuanLyThongTinCaNhan.QuanLyThongTinCaNhanUI;
 import com.nhom7.quanlyluongthuong.View.TuyChonUI;
 import com.nhom7.quanlyluongthuong.View.XemChiTietLuongCaNhan.XemChiTietLuongCaNhanUI;
 import com.nhom7.quanlyluongthuong.util.IOptionEvent;
+import com.nhom7.quanlyluongthuong.util.XuLyFile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class TrangChuAdminUI extends javax.swing.JFrame implements ActionListener {
     private HashMap<String, Object> data;
@@ -65,30 +71,75 @@ public class TrangChuAdminUI extends javax.swing.JFrame implements ActionListene
 
         btnHeSoLuong.setFont(btnHeSoLuong.getFont().deriveFont(btnHeSoLuong.getFont().getSize()+3f));
         btnHeSoLuong.setText("Hệ Số Lương");
+        btnHeSoLuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHeSoLuongActionPerformed(evt);
+            }
+        });
 
         btnPhuCap.setFont(btnPhuCap.getFont().deriveFont(btnPhuCap.getFont().getSize()+3f));
         btnPhuCap.setText("Phụ Cấp");
+        btnPhuCap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPhuCapActionPerformed(evt);
+            }
+        });
 
         btnTienThuong.setFont(btnTienThuong.getFont().deriveFont(btnTienThuong.getFont().getSize()+3f));
         btnTienThuong.setText("Tiền Thưởng");
+        btnTienThuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTienThuongActionPerformed(evt);
+            }
+        });
 
         btnNhanVien.setFont(btnNhanVien.getFont().deriveFont(btnNhanVien.getFont().getSize()+3f));
         btnNhanVien.setText("Nhân Viên");
+        btnNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhanVienActionPerformed(evt);
+            }
+        });
 
         btnChamCong.setFont(btnChamCong.getFont().deriveFont(btnChamCong.getFont().getSize()+3f));
         btnChamCong.setText("Chấm Công");
+        btnChamCong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChamCongActionPerformed(evt);
+            }
+        });
 
         btnHocPhan.setFont(btnHocPhan.getFont().deriveFont(btnHocPhan.getFont().getSize()+3f));
         btnHocPhan.setText("Học Phần");
+        btnHocPhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHocPhanActionPerformed(evt);
+            }
+        });
 
         btnPhongBan.setFont(btnPhongBan.getFont().deriveFont(btnPhongBan.getFont().getSize()+3f));
         btnPhongBan.setText("Phòng Ban");
+        btnPhongBan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPhongBanActionPerformed(evt);
+            }
+        });
 
         btnTaiKhoan.setFont(btnTaiKhoan.getFont().deriveFont(btnTaiKhoan.getFont().getSize()+3f));
         btnTaiKhoan.setText("Tài Khoản");
+        btnTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaiKhoanActionPerformed(evt);
+            }
+        });
 
         btnThoat.setFont(btnThoat.getFont().deriveFont(btnThoat.getFont().getSize()+3f));
         btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         btnDangXuat.setText("Đăng Xuất");
         btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -99,11 +150,21 @@ public class TrangChuAdminUI extends javax.swing.JFrame implements ActionListene
 
         btnXemChiTietLuongCaNhan.setFont(btnXemChiTietLuongCaNhan.getFont().deriveFont(btnXemChiTietLuongCaNhan.getFont().getSize()+3f));
         btnXemChiTietLuongCaNhan.setText("Xem Chi Tiết Lương Cá Nhân");
+        btnXemChiTietLuongCaNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXemChiTietLuongCaNhanActionPerformed(evt);
+            }
+        });
 
         btnQuanLyThongTinCaNhan.setFont(btnQuanLyThongTinCaNhan.getFont().deriveFont(btnQuanLyThongTinCaNhan.getFont().getSize()+3f));
         btnQuanLyThongTinCaNhan.setText("Quản Lý Thông Tin Cá Nhân");
+        btnQuanLyThongTinCaNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuanLyThongTinCaNhanActionPerformed(evt);
+            }
+        });
 
-        lblUsername.setText("Xin chào, Minh");
+        lblUsername.setText("Xin chào, Nhóm 7");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,8 +243,135 @@ public class TrangChuAdminUI extends javax.swing.JFrame implements ActionListene
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            XuLyFile.luuTaiKhoan(new TaiKhoan("", ""));
+            new DangNhapUI().onStartGUI();
+        } catch (IOException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
     }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void btnPhuCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhuCapActionPerformed
+        // TODO add your handling code here:
+        //Button Phu Cap
+        try {
+            BaoTriThongTinPhuCapUI baoTriThongTinPhuCapUI = new BaoTriThongTinPhuCapUI(data);
+            baoTriThongTinPhuCapUI.setData(data);
+            baoTriThongTinPhuCapUI.onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
+    }//GEN-LAST:event_btnPhuCapActionPerformed
+
+    private void btnHeSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeSoLuongActionPerformed
+        // TODO add your handling code here:
+        try {
+            BaoTriThongTinHeSoLuongUI baoTriThongTinHeSoLuongUI = new BaoTriThongTinHeSoLuongUI(data);
+            baoTriThongTinHeSoLuongUI.onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnHeSoLuongActionPerformed
+
+    private void btnPhongBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhongBanActionPerformed
+        // TODO add your handling code here:
+        try {
+            BaoTriThongTinPhongBanUI baoTriThongTinPhongBanUI = new BaoTriThongTinPhongBanUI(data);
+            baoTriThongTinPhongBanUI.onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnPhongBanActionPerformed
+
+    private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
+        // TODO add your handling code here:
+        try {
+            BaoTriThongTinNhanVienUI baoTriThongTinNhanVienUI = new BaoTriThongTinNhanVienUI(data);
+            baoTriThongTinNhanVienUI.onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnNhanVienActionPerformed
+
+    private void btnTienThuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTienThuongActionPerformed
+        // TODO add your handling code here:
+        try {
+            BaoTriThongTinTienThuongUI baoTriThongTinTienThuongUI = new BaoTriThongTinTienThuongUI(data);
+            baoTriThongTinTienThuongUI.onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnTienThuongActionPerformed
+
+    private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
+        // TODO add your handling code here:
+        try {
+            BaoTriThongTinTaiKhoanUI baoTriThongTinTaiKhoanUI = new BaoTriThongTinTaiKhoanUI(data);
+            baoTriThongTinTaiKhoanUI.onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnTaiKhoanActionPerformed
+
+    private void btnHocPhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHocPhanActionPerformed
+        // TODO add your handling code here:
+        try {
+            BaoTriThongTinHocPhanUI baoTriThongTinHocPhanUI = new BaoTriThongTinHocPhanUI(data);
+            baoTriThongTinHocPhanUI.onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnHocPhanActionPerformed
+
+    private void btnChamCongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChamCongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnChamCongActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        TuyChonUI tuyChonUI = new TuyChonUI();
+
+        tuyChonUI.setOnHandleOptionEvent(new IOptionEvent() {
+            @Override
+            public void onAcceptEvent() {
+                dispose();
+            }
+
+            @Override
+            public void onCancelEvent() {
+
+            }
+        });
+
+        tuyChonUI.onCallGUI(this.getContentPane(), "Bạn có muốn thoát chương trình", "Thông Báo");
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void btnXemChiTietLuongCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietLuongCaNhanActionPerformed
+        // TODO add your handling code here:
+        XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI(data);
+        xemChiTietLuongCaNhanUI.onStartGUI();
+        dispose();
+    }//GEN-LAST:event_btnXemChiTietLuongCaNhanActionPerformed
+
+    private void btnQuanLyThongTinCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLyThongTinCaNhanActionPerformed
+        // TODO add your handling code here:
+        try {
+            QuanLyThongTinCaNhanUI quanLyThongTinCaNhanUI = new QuanLyThongTinCaNhanUI(data);
+            quanLyThongTinCaNhanUI.onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }          
+        dispose();
+    }//GEN-LAST:event_btnQuanLyThongTinCaNhanActionPerformed
 
     public void onStartGUI() {
         /* Set the Nimbus look and feel */
@@ -238,151 +426,7 @@ public class TrangChuAdminUI extends javax.swing.JFrame implements ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JButton jButton = (JButton) e.getSource();
-
-        //Button Xem Chi Tiet Luong Ca Nhan
-        if (jButton.equals(btnXemChiTietLuongCaNhan)) {
-            XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI();
-            xemChiTietLuongCaNhanUI.setData(data);
-            xemChiTietLuongCaNhanUI.onStartGUI();
-            dispose();
-            return;
-        }
-
-        //Button Tai Khoan
-        if (jButton.equals(btnTaiKhoan)) {
-            try {
-                BaoTriThongTinTaiKhoanUI baoTriThongTinTaiKhoanUI = new BaoTriThongTinTaiKhoanUI();
-                baoTriThongTinTaiKhoanUI.setData(data);
-                baoTriThongTinTaiKhoanUI.onStartGUI();
-            } catch (SQLException ex) {
-                Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-            return;
-        }
-
-        //Button He So Luong
-        if (jButton.equals(btnHeSoLuong)) {
-            try {
-                BaoTriThongTinHeSoLuongUI baoTriThongTinHeSoLuongUI = new BaoTriThongTinHeSoLuongUI();
-                baoTriThongTinHeSoLuongUI.setData(data);
-                baoTriThongTinHeSoLuongUI.onStartGUI();
-            } catch (SQLException ex) {
-                Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-            return;
-        }
-
-        //Button Hoc Phan
-        if (jButton.equals(btnHocPhan)) {
-            try {
-                BaoTriThongTinHocPhanUI baoTriThongTinHocPhanUI = new BaoTriThongTinHocPhanUI();
-                baoTriThongTinHocPhanUI.setData(data);
-                baoTriThongTinHocPhanUI.onStartGUI();
-            } catch (SQLException ex) {
-                Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-            return;
-        }
-
-        //Button Nhan Vien
-        if (jButton.equals(btnNhanVien)) {
-            try {
-                BaoTriThongTinNhanVienUI baoTriThongTinNhanVienUI = new BaoTriThongTinNhanVienUI();
-                baoTriThongTinNhanVienUI.setData(data);
-                baoTriThongTinNhanVienUI.onStartGUI();
-            } catch (SQLException ex) {
-                Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-            return;
-        }
-
-        //Button Phong Ban
-        if (jButton.equals(btnPhongBan)) {
-            try {
-                BaoTriThongTinPhongBanUI baoTriThongTinPhongBanUI = new BaoTriThongTinPhongBanUI();
-                baoTriThongTinPhongBanUI.setData(data);
-                baoTriThongTinPhongBanUI.onStartGUI();
-            } catch (SQLException ex) {
-                Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-            return;
-        }
-
-        //Button Phu Cap
-        if (jButton.equals(btnPhuCap)) {
-            try {
-                BaoTriThongTinPhuCapUI baoTriThongTinPhuCapUI = new BaoTriThongTinPhuCapUI();
-                baoTriThongTinPhuCapUI.setData(data);
-                baoTriThongTinPhuCapUI.onStartGUI();
-            } catch (SQLException ex) {
-                Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-            return;
-        }
-
-        //Button Cham Cong
-        if (jButton.equals(btnChamCong)) {
-
-        }
-
-        //Button Tien Thuong
-        if (jButton.equals(btnTienThuong)) {
-            try {
-                BaoTriThongTinTienThuongUI baoTriThongTinTienThuongUI = new BaoTriThongTinTienThuongUI();
-                baoTriThongTinTienThuongUI.setData(data);
-                baoTriThongTinTienThuongUI.onStartGUI();
-            } catch (SQLException ex) {
-                Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-            return;
-        }
-
-        //Button Xem Chi Tiet Luong Ca Nhan
-        if (jButton.equals(btnXemChiTietLuongCaNhan)) {
-            XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI();
-            xemChiTietLuongCaNhanUI.setData(data);
-            xemChiTietLuongCaNhanUI.onStartGUI();
-            dispose();
-            return;
-        }
-
-        //Button Quan Ly Thong Tin Ca Nhan
-        if (jButton.equals(btnQuanLyThongTinCaNhan)) {
-            try {
-                QuanLyThongTinCaNhanUI quanLyThongTinCaNhanUI = new QuanLyThongTinCaNhanUI(data);
-                quanLyThongTinCaNhanUI.onStartGUI();
-            } catch (SQLException ex) {
-                Logger.getLogger(TrangChuAdminUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            dispose();
-            return;
-        }
-
-        //Button Thoat
-        if (jButton.equals(btnThoat)) {
-            TuyChonUI tuyChonUI = new TuyChonUI();
-
-            tuyChonUI.setOnHandleOptionEvent(new IOptionEvent() {
-                @Override
-                public void onAcceptEvent() {
-                    dispose();
-                }
-
-                @Override
-                public void onCancelEvent() {
-
-                }
-            });
-
-            tuyChonUI.onCallGUI(this.getContentPane(), "Bạn có muốn thoát chương trình", "Thông Báo");
-        }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

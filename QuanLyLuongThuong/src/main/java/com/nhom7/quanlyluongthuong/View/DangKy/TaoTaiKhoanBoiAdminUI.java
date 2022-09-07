@@ -6,23 +6,34 @@ package com.nhom7.quanlyluongthuong.View.DangKy;
 
 import com.nhom7.quanlyluongthuong.Controller.DangKyController;
 import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
+import com.nhom7.quanlyluongthuong.View.BaoTriThongTinChamCong.BaoTriThongTinChamCongUI;
+import com.nhom7.quanlyluongthuong.View.BaoTriThongTinTaiKhoan.BaoTriThongTinTaiKhoanUI;
+import com.nhom7.quanlyluongthuong.View.DangNhap.DangNhapUI;
 import com.nhom7.quanlyluongthuong.View.TuyChonUI;
 import com.nhom7.quanlyluongthuong.util.IOptionEvent;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import com.nhom7.quanlyluongthuong.util.ISendDataToAnotherGUI;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Admin
  */
 public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
+
     private static ISendDataToAnotherGUI putDataInterface;
+
     /**
      * Creates new form TaoTaiKhoanBoiAdminUI1
      */
-    public TaoTaiKhoanBoiAdminUI() {
+    private HashMap<String, Object> data;
+    public TaoTaiKhoanBoiAdminUI(HashMap<String, Object> data) {
+        this.data = data;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public void setPutDataInterface(ISendDataToAnotherGUI putDataInterface) {
@@ -40,15 +51,14 @@ public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
 
         btnTaoTaiKhoan = new javax.swing.JButton();
         btnResetThongTin = new javax.swing.JButton();
-        btnHuyBo = new javax.swing.JButton();
         txtTaiKhoan = new javax.swing.JTextField();
-        txtMatKhau = new javax.swing.JTextField();
         cboQuyen = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnQuayLai = new javax.swing.JButton();
+        txtMatKhau = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,17 +78,7 @@ public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
             }
         });
 
-        btnHuyBo.setFont(btnHuyBo.getFont().deriveFont(btnHuyBo.getFont().getSize()+3f));
-        btnHuyBo.setText("Hủy Bỏ");
-        btnHuyBo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHuyBoActionPerformed(evt);
-            }
-        });
-
         txtTaiKhoan.setFont(txtTaiKhoan.getFont().deriveFont(txtTaiKhoan.getFont().getSize()+3f));
-
-        txtMatKhau.setFont(txtMatKhau.getFont().deriveFont(txtMatKhau.getFont().getSize()+3f));
 
         cboQuyen.setFont(cboQuyen.getFont().deriveFont(cboQuyen.getFont().getSize()+3f));
         cboQuyen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quản Trị Viên", "Giảng Viên", "Kế Toán", "Nhân Sự", "Giám Đốc" }));
@@ -102,36 +102,37 @@ public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
             }
         });
 
+        txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMatKhau)
-                    .addComponent(txtTaiKhoan)
-                    .addComponent(cboQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTaoTaiKhoan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnResetThongTin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnHuyBo)
-                .addGap(91, 91, 91))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(btnQuayLai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(190, 190, 190))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTaoTaiKhoan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnResetThongTin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTaiKhoan)
+                            .addComponent(cboQuyen, 0, 300, Short.MAX_VALUE)
+                            .addComponent(txtMatKhau))))
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,9 +146,9 @@ public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
                     .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,8 +156,7 @@ public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTaoTaiKhoan)
-                    .addComponent(btnResetThongTin)
-                    .addComponent(btnHuyBo))
+                    .addComponent(btnResetThongTin))
                 .addGap(50, 50, 50))
         );
 
@@ -169,52 +169,83 @@ public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
         cboQuyen.setSelectedIndex(0);
     }//GEN-LAST:event_btnResetThongTinActionPerformed
 
-    private void btnHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyBoActionPerformed
-        TuyChonUI tuyChonUI = new TuyChonUI();
-        tuyChonUI.setOnHandleOptionEvent(new IOptionEvent() {
-            @Override
-            public void onAcceptEvent() {
-                dispose();
-            }
-
-            @Override
-            public void onCancelEvent() {
-            }
-        });
-
-        tuyChonUI.onCallGUI(getContentPane(), "Bạn có muốn thoát form này ?", "Thông báo");
-    }//GEN-LAST:event_btnHuyBoActionPerformed
-
     private void btnTaoTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoTaiKhoanActionPerformed
+//        try {
+//            String taiKhoan = txtTaiKhoan.getText();
+//            String matKhau = txtMatKhau.getText();
+//            int quyen = cboQuyen.getSelectedIndex();
+//
+//            taiKhoan = taiKhoan.trim();
+//            matKhau = matKhau.trim();
+//            if("".equals(taiKhoan) || "".equals(matKhau)){
+//                throw new Exception("Không được để trống Tài Khoản/Mật khẩu");
+//            }
+//            
+//            if(putDataInterface != null){
+//                var myHashMap = new HashMap<String, Object>();
+//                myHashMap.put("TaiKhoan", taiKhoan);
+//                myHashMap.put("Quyen", quyen);
+//                putDataInterface.onGetData(myHashMap);
+//            }else{
+//                throw new Exception("Chưa thể đẩy data sang");
+//            }            
+//            JOptionPane.showMessageDialog(this.getContentPane(), DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen)), "Thông Báo", JOptionPane.OK_OPTION);
+//            dispose();
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(this.getContentPane(), ex.getMessage(), "Thông Báo", JOptionPane.OK_OPTION);
+//            ex.printStackTrace();
+//
+//        }
         try {
             String taiKhoan = txtTaiKhoan.getText();
-            String matKhau = txtMatKhau.getText();
-            int quyen = cboQuyen.getSelectedIndex();
+            String matKhau = String.valueOf(txtMatKhau.getPassword());
+            int quyen = 0;
+            switch(cboQuyen.getSelectedItem().toString()) {
+                case "Quản trị viên" -> {
+                    quyen = 0;
+                }
+                
+                case "Giảng viên" -> {
+                    quyen = 1;
+                }
+                
+                case "Giám đốc" -> {
+                    quyen = 4;
+                }
+                
+                case "Kế toán" -> {
+                    quyen = 2;
+                }
+                
+                case "Nhân sự" -> {
+                    quyen = 3;
+                }
+            }
 
             taiKhoan = taiKhoan.trim();
             matKhau = matKhau.trim();
-            if("".equals(taiKhoan) || "".equals(matKhau)){
-                throw new Exception("Không được để trống Tài Khoản/Mật khẩu");
+            if ("".equals(taiKhoan) || "".equals(matKhau)) {
+                throw new Exception("Không được để trống mật khẩu");
+            } else {
+                String thongbao = DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen));
+                JOptionPane.showMessageDialog(this.getContentPane(), thongbao, "Thông Báo", JOptionPane.OK_OPTION);
+                if (thongbao.equals("Tạo Tài Khoản Thành Công")) {
+                    new BaoTriThongTinTaiKhoanUI(data).onStartGUI();
+                    dispose();
+                }
             }
-            
-            if(putDataInterface != null){
-                var myHashMap = new HashMap<String, Object>();
-                myHashMap.put("TaiKhoan", taiKhoan);
-                myHashMap.put("Quyen", quyen);
-                putDataInterface.onGetData(myHashMap);
-            }else{
-                throw new Exception("Chưa thể đẩy data sang");
-            }            
-            JOptionPane.showMessageDialog(this.getContentPane(), DangKyController.onRegisterEvent(new TaiKhoan(taiKhoan, matKhau, quyen)), "Thông Báo", JOptionPane.OK_OPTION);
-            dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this.getContentPane(), ex.getMessage(), "Thông Báo", JOptionPane.OK_OPTION);
             ex.printStackTrace();
-
         }
     }//GEN-LAST:event_btnTaoTaiKhoanActionPerformed
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+        try {
+            new BaoTriThongTinTaiKhoanUI(data).onStartGUI();
+        } catch (SQLException ex) {
+            Logger.getLogger(TaoTaiKhoanBoiAdminUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
@@ -249,13 +280,12 @@ public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TaoTaiKhoanBoiAdminUI().setVisible(true);
+                new TaoTaiKhoanBoiAdminUI(data).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHuyBo;
     private javax.swing.JButton btnQuayLai;
     private javax.swing.JButton btnResetThongTin;
     private javax.swing.JButton btnTaoTaiKhoan;
@@ -264,7 +294,7 @@ public class TaoTaiKhoanBoiAdminUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField txtMatKhau;
+    private javax.swing.JPasswordField txtMatKhau;
     public javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
 

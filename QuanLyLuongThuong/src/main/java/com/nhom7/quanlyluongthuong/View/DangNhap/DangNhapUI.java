@@ -33,8 +33,7 @@ public class DangNhapUI extends javax.swing.JFrame {
         txtTaiKhoan = new javax.swing.JTextField();
         chkSavePassword = new javax.swing.JCheckBox();
         btnDangNhap = new javax.swing.JButton();
-        btnHuyBo = new javax.swing.JButton();
-        linkDangKy = new javax.swing.JLabel();
+        linkDangKy = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,19 +62,11 @@ public class DangNhapUI extends javax.swing.JFrame {
             }
         });
 
-        btnHuyBo.setFont(btnHuyBo.getFont().deriveFont(btnHuyBo.getFont().getSize()+3f));
-        btnHuyBo.setText("Hủy Bỏ");
-        btnHuyBo.addActionListener(new java.awt.event.ActionListener() {
+        linkDangKy.setFont(linkDangKy.getFont().deriveFont(linkDangKy.getFont().getSize()+3f));
+        linkDangKy.setText("Đăng Ký");
+        linkDangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHuyBoActionPerformed(evt);
-            }
-        });
-
-        linkDangKy.setFont(linkDangKy.getFont().deriveFont((linkDangKy.getFont().getStyle() | java.awt.Font.ITALIC) | java.awt.Font.BOLD));
-        linkDangKy.setText("Bạn chưa có tài khoản? Đăng Ký Ngay");
-        linkDangKy.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkDangKyMouseClicked(evt);
+                linkDangKyActionPerformed(evt);
             }
         });
 
@@ -96,29 +87,26 @@ public class DangNhapUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(61, 61, 61)
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
-                        .addComponent(btnHuyBo))
+                        .addComponent(linkDangKy))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(9, 37, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkSavePassword)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTaiKhoan))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(9, 36, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(chkSavePassword)
-                                .addGap(66, 66, 66)
-                                .addComponent(linkDangKy))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPassword)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(txtTaiKhoan)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,14 +126,12 @@ public class DangNhapUI extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(chkSavePassword)
-                            .addComponent(linkDangKy))
+                        .addComponent(chkSavePassword)
                         .addContainerGap(91, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnHuyBo)
+                            .addComponent(linkDangKy)
                             .addComponent(btnDangNhap))
                         .addGap(37, 37, 37))))
         );
@@ -153,9 +139,10 @@ public class DangNhapUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyBoActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnHuyBoActionPerformed
+    private void linkDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkDangKyActionPerformed
+        new DangKyUI().onStartGUI();
+        dispose();
+    }//GEN-LAST:event_linkDangKyActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         try {
@@ -170,12 +157,13 @@ public class DangNhapUI extends javax.swing.JFrame {
                 throw new Exception("Không được để trống thông tin");
             } else {
                 TaiKhoan taiKhoan = new TaiKhoan(username, password);
-                JOptionPane.showMessageDialog(this.getContentPane(), DangNhapController.onLoginEvent(taiKhoan), "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
-                if (DangNhapController.onLoginEvent(taiKhoan).equals("Đăng Nhập Thành Công")) {
-                    this.dispose();
-                }
+                String thongbao = DangNhapController.onLoginEvent(taiKhoan);
+                JOptionPane.showMessageDialog(this.getContentPane(), thongbao, "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
                 if(chkSavePassword.isSelected()){
                     XuLyFile.luuTaiKhoan(taiKhoan);
+                }
+                if (thongbao.equals("Đăng Nhập Thành Công")) {
+                    dispose();
                 }
             }
             
@@ -184,11 +172,6 @@ public class DangNhapUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this.getContentPane(), e.toString(), "Thông Báo", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
-
-    private void linkDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkDangKyMouseClicked
-        new DangKyUI().onStartGUI();
-        this.dispose();
-    }//GEN-LAST:event_linkDangKyMouseClicked
 
     public void onStartGUI() {
         /* Set the FlatLaf Light look and feel */
@@ -226,13 +209,12 @@ public class DangNhapUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
-    private javax.swing.JButton btnHuyBo;
     private javax.swing.JCheckBox chkSavePassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel linkDangKy;
+    private javax.swing.JButton linkDangKy;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables

@@ -2,9 +2,21 @@ package com.nhom7.quanlyluongthuong.View.QuanLyThongTinCaNhan;
 
 import com.nhom7.quanlyluongthuong.Controller.QuanLyThongTinCaNhanController;
 import com.nhom7.quanlyluongthuong.Model.NhanVien;
+import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin.TrangChuAdminUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuGiamDoc.TrangChuGiamDocUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuKeToan.TrangChuKeToanUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuNguoiDung.TrangChuNguoiDungUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuNhanSu.TrangChuNhanSuUI;
+import com.nhom7.quanlyluongthuong.util.KetNoiCSDL;
+import java.sql.Connection;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,12 +25,23 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
 
     private QuanLyThongTinCaNhanController controller;
     private HashMap<String, Object> data;
+    private static final String insertNhanVien
+            = "insert into NHANVIEN(MANHANVIEN, TENNHANVIEN, GIOITINH, NGAYSINH, DIACHI, CHUCVU, TRINHDO, MAPHONG, MAHESOLUONG, MATAIKHOAN) "
+            + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String updateNhanVien
+            = "update NHANVIEN SET "
+            + "TENNHANVIEN = ?,"
+            + "GIOITINH = ?,"
+            + "NGAYSINH = ?,"
+            + "DIACHI = ?,"
+            + "TRINHDO = ? "
+            + "where MANHANVIEN = ?";
+
+    private static final String checkNhanVien
+            = "select count(*) from NHANVIEN "
+            + "where MANHANVIEN = ?";
 
     public QuanLyThongTinCaNhanUI() {
-    }
-
-    public void setData(HashMap<String, Object> data) {
-        this.data = data;
     }
 
     public QuanLyThongTinCaNhanUI(HashMap<String, Object> data) throws SQLException {
@@ -42,8 +65,6 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDiaChi = new javax.swing.JTextArea();
-        jLabel9 = new javax.swing.JLabel();
-        cboChucVu = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         cboTrinhDo = new javax.swing.JComboBox<>();
         btnSuaThongTinCaNhan = new javax.swing.JButton();
@@ -75,12 +96,6 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
         txtDiaChi.setColumns(20);
         txtDiaChi.setRows(5);
         jScrollPane1.setViewportView(txtDiaChi);
-
-        jLabel9.setFont(jLabel9.getFont().deriveFont(jLabel9.getFont().getSize()+3f));
-        jLabel9.setText("Chức Vụ:");
-
-        cboChucVu.setFont(cboChucVu.getFont().deriveFont(cboChucVu.getFont().getSize()+3f));
-        cboChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giám Đốc", "Giảng Viên", "Kế Toán", "Nhân Sự" }));
 
         jLabel10.setFont(jLabel10.getFont().deriveFont(jLabel10.getFont().getSize()+3f));
         jLabel10.setText("Trình Độ:");
@@ -137,15 +152,17 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel9)
                             .addComponent(jLabel10)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboTrinhDo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboChucVu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                            .addComponent(txtNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(btnSuaThongTinCaNhan)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(135, 135, 135))
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
@@ -153,10 +170,6 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
                 .addGap(137, 137, 137)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSuaThongTinCaNhan)
-                .addGap(266, 266, 266))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,27 +195,109 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(btnSuaThongTinCaNhan)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSuaThongTinCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThongTinCaNhanActionPerformed
+        // chèn nhân viên 
+        Connection connection = KetNoiCSDL.getConnection();
+        PreparedStatement preparedStatement2;
+        try {
 
+            PreparedStatement preparedStatement1 = connection.prepareStatement(checkNhanVien);
+            preparedStatement1.setLong(1, (int) data.get("ID"));
+            ResultSet resultSet1 = preparedStatement1.executeQuery();
+            resultSet1.next();
+            int check = resultSet1.getInt(1);
+            if (check == 1) {
+                preparedStatement2 = connection.prepareStatement(updateNhanVien);
+                preparedStatement2.setString(1, txtHoTen.getText().trim());
+                preparedStatement2.setInt(2, rdNam.isSelected() ? 0 : 1);
+                java.sql.Date date = new java.sql.Date(txtNgaySinh.getDate().getTime());
+                preparedStatement2.setDate(3, date);
+                preparedStatement2.setString(4, txtDiaChi.getText());
+                preparedStatement2.setString(5, cboTrinhDo.getSelectedItem().toString());
+                preparedStatement2.setLong(6, (int) data.get("ID"));
+                preparedStatement2.executeUpdate();
+            } else {
+                preparedStatement2 = connection.prepareStatement(insertNhanVien);
+                preparedStatement2.setLong(1, (int) data.get("ID"));
+                preparedStatement2.setString(2, txtHoTen.getText().trim());
+                preparedStatement2.setInt(3, rdNam.isSelected() ? 0 : 1);
+                java.sql.Date date = new java.sql.Date(txtNgaySinh.getDate().getTime());
+                preparedStatement2.setDate(4, date);
+                preparedStatement2.setString(5, txtDiaChi.getText());
+                String chucvu = "";
+                switch ((int) data.get("Quyen")) {
+                    case 0 -> {
+                        chucvu = "admin";
+                    }
+
+                    case 1 -> {
+                        chucvu = "Giáo viên";
+                    }
+
+                    case 2 -> {
+                        chucvu = "Kế toán";
+                    }
+
+                    case 3 -> {
+                        chucvu = "Nhân sự";
+                    }
+
+                    case 4 -> {
+                        chucvu = "Giám đốc";
+                    }
+                }
+                preparedStatement2.setString(6, chucvu);
+                preparedStatement2.setString(7, cboTrinhDo.getSelectedItem().toString());
+                preparedStatement2.setInt(8, 1);
+                preparedStatement2.setInt(9, 1);
+                preparedStatement2.setInt(10, (int) data.get("ID"));
+                preparedStatement2.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyThongTinCaNhanUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSuaThongTinCaNhanActionPerformed
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+        int quyen = Integer.parseInt(data.get("Quyen").toString());
+        switch (quyen) {
+            case 0 -> {
+                TrangChuAdminUI trangChuAdminUI = new TrangChuAdminUI(data);
+                trangChuAdminUI.onStartGUI();
+            }
+
+            case 1 -> {
+                TrangChuNguoiDungUI trangChuNguoiDungUI = new TrangChuNguoiDungUI(data);
+                trangChuNguoiDungUI.onStartGUI();
+            }
+
+            case 2 -> {
+                TrangChuKeToanUI trangChuKeToanUI = new TrangChuKeToanUI(data);
+                trangChuKeToanUI.onStartGUI();
+            }
+
+            case 3 -> {
+                TrangChuNhanSuUI trangChuNhanSuUI = new TrangChuNhanSuUI(data);
+                trangChuNhanSuUI.onStartGUI();
+            }
+
+            case 4 -> {
+                TrangChuGiamDocUI trangChuGiamDocUI = new TrangChuGiamDocUI(data);
+                trangChuGiamDocUI.onStartGUI();
+            }
+        }
         dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
@@ -248,13 +343,12 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
             txtNgaySinh.setDate(new Date(nhanVien.getNgaySinh().getTime()));
             txtDiaChi.setText(nhanVien.getDiaChi());
 
-            for (int i = 0; i < cboChucVu.getItemCount(); i++) {
-                if (cboChucVu.getItemAt(i).equalsIgnoreCase(nhanVien.getChucVu())) {
-                    cboChucVu.setSelectedIndex(i);
-                    break;
-                }
-            }
-
+//            for (int i = 0; i < cboChucVu.getItemCount(); i++) {
+//                if (cboChucVu.getItemAt(i).equalsIgnoreCase(nhanVien.getChucVu())) {
+//                    cboChucVu.setSelectedIndex(i);
+//                    break;
+//                }
+//            }
             for (int i = 0; i < cboTrinhDo.getItemCount(); i++) {
                 if (cboTrinhDo.getItemAt(i).equalsIgnoreCase(nhanVien.getTrinhDo())) {
                     cboTrinhDo.setSelectedIndex(i);
@@ -272,7 +366,6 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnQuayLai;
     private javax.swing.JButton btnSuaThongTinCaNhan;
-    private javax.swing.JComboBox<String> cboChucVu;
     private javax.swing.JComboBox<String> cboTrinhDo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -280,7 +373,6 @@ public class QuanLyThongTinCaNhanUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.ButtonGroup rdGroupGioiTinh;
     private javax.swing.JRadioButton rdNam;

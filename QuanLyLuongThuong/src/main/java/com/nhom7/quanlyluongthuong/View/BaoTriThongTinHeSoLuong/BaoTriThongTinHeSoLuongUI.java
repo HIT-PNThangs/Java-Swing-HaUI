@@ -2,6 +2,7 @@ package com.nhom7.quanlyluongthuong.View.BaoTriThongTinHeSoLuong;
 
 import com.nhom7.quanlyluongthuong.Controller.BaoTriThongTinHeSoLuongController;
 import com.nhom7.quanlyluongthuong.Model.HeSoLuong;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin.TrangChuAdminUI;
 import com.nhom7.quanlyluongthuong.View.TuyChonUI;
 import com.nhom7.quanlyluongthuong.util.IOptionEvent;
 import com.nhom7.quanlyluongthuong.util.IUpdateTableEvent;
@@ -18,10 +19,6 @@ import javax.swing.table.TableModel;
 public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
     BaoTriThongTinHeSoLuongController baoTriThongTinHeSoLuongController;
     private HashMap<String, Object> data;
-
-    public void setData(HashMap<String, Object> data) {
-        this.data = data;
-    }
 
     public void UpdateTable() throws SQLException {
         ArrayList<HeSoLuong> heSoLuongs = baoTriThongTinHeSoLuongController.onQueryAllHeSoLuong();
@@ -72,8 +69,9 @@ public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
         }
         return false;
     }
-
-    public BaoTriThongTinHeSoLuongUI() throws SQLException {
+     
+    public BaoTriThongTinHeSoLuongUI(HashMap<String, Object> data) throws SQLException {
+        this.data = data;
         initComponents();
         setLocationRelativeTo(null);
         txtTenHeSoLuong.requestFocus();
@@ -109,6 +107,7 @@ public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
         btnXoaHeSoLuong = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtHeSoLuong = new javax.swing.JTextField();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bảo Trì Thông Tin Hệ Số Lương");
@@ -196,14 +195,17 @@ public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
 
         txtHeSoLuong.setFont(txtHeSoLuong.getFont().deriveFont(txtHeSoLuong.getFont().getSize()+3f));
 
+        back.setText("Quay lại");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(199, 199, 199))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -218,9 +220,6 @@ public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
                             .addComponent(txtTenHeSoLuong)
                             .addComponent(txtHeSoLuong, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(89, 89, 89)
                         .addComponent(btnThemHeSoLuong)
                         .addGap(18, 18, 18)
@@ -228,14 +227,25 @@ public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnXoaHeSoLuong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnXoaThongTin)))
+                        .addComponent(btnXoaThongTin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(back)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(182, 182, 182))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -388,6 +398,12 @@ public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
         txtTenHeSoLuong.requestFocus();
     }//GEN-LAST:event_txtMaHeSoLuongMouseClicked
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        new TrangChuAdminUI(data).onStartGUI();
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
+
     public void onStartGUI() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -416,7 +432,7 @@ public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new BaoTriThongTinHeSoLuongUI().setVisible(true);
+                    new BaoTriThongTinHeSoLuongUI(data).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(BaoTriThongTinHeSoLuongUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -425,6 +441,7 @@ public class BaoTriThongTinHeSoLuongUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton btnSuaHeSoLuong;
     private javax.swing.JButton btnThemHeSoLuong;
     private javax.swing.JButton btnXoaHeSoLuong;

@@ -4,8 +4,12 @@
  */
 package com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuGiamDoc;
 
+import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
+import com.nhom7.quanlyluongthuong.View.DangNhap.DangNhapUI;
 import com.nhom7.quanlyluongthuong.View.QuanLyThongTinCaNhan.QuanLyThongTinCaNhanUI;
 import com.nhom7.quanlyluongthuong.View.XemChiTietLuongCaNhan.XemChiTietLuongCaNhanUI;
+import com.nhom7.quanlyluongthuong.util.XuLyFile;
+import java.io.IOException;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -19,15 +23,14 @@ import java.util.logging.Logger;
 public class TrangChuGiamDocUI extends javax.swing.JFrame {
     private HashMap<String, Object> data;
     
-    public void setData(HashMap<String, Object> data) {
-        this.data = data;
-    }
+   
     /**
      * Creates new form TrangChuGiamDocUI
      */
     public TrangChuGiamDocUI(HashMap<String, Object> data) {
         this.data = data;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -43,8 +46,8 @@ public class TrangChuGiamDocUI extends javax.swing.JFrame {
         btnDangXuat = new javax.swing.JButton();
         btnXemChiTietLuongCaNhan = new javax.swing.JButton();
         btnSuaThongTinCaNhan = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        xemThongTinNhanVien = new javax.swing.JButton();
+        xemThongTinPhuCap = new javax.swing.JButton();
         btnXemChiTietLuongCaNhan1 = new javax.swing.JButton();
         btnXemChiTietLuongCaNhan2 = new javax.swing.JButton();
 
@@ -76,11 +79,16 @@ public class TrangChuGiamDocUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(jButton1.getFont().deriveFont(jButton1.getFont().getSize()+3f));
-        jButton1.setText("Xem Thông Tin Nhân Viên");
+        xemThongTinNhanVien.setFont(xemThongTinNhanVien.getFont().deriveFont(xemThongTinNhanVien.getFont().getSize()+3f));
+        xemThongTinNhanVien.setText("Xem Thông Tin Nhân Viên");
+        xemThongTinNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xemThongTinNhanVienActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(jButton2.getFont().deriveFont(jButton2.getFont().getSize()+3f));
-        jButton2.setText("Xem Thông Tin Phụ Cấp");
+        xemThongTinPhuCap.setFont(xemThongTinPhuCap.getFont().deriveFont(xemThongTinPhuCap.getFont().getSize()+3f));
+        xemThongTinPhuCap.setText("Xem Thông Tin Phụ Cấp");
 
         btnXemChiTietLuongCaNhan1.setFont(btnXemChiTietLuongCaNhan1.getFont().deriveFont(btnXemChiTietLuongCaNhan1.getFont().getSize()+3f));
         btnXemChiTietLuongCaNhan1.setText("Xem Thống Kê Lương Cả Công Ty");
@@ -103,21 +111,24 @@ public class TrangChuGiamDocUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(49, 49, 49)
-                            .addComponent(btnDangXuat))
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnXemChiTietLuongCaNhan)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnSuaThongTinCaNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(btnXemChiTietLuongCaNhan1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnXemChiTietLuongCaNhan2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(66, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(xemThongTinPhuCap, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(xemThongTinNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnXemChiTietLuongCaNhan)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnSuaThongTinCaNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnXemChiTietLuongCaNhan1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnXemChiTietLuongCaNhan2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(49, 49, 49)
+                        .addComponent(btnDangXuat)))
                 .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
@@ -132,9 +143,9 @@ public class TrangChuGiamDocUI extends javax.swing.JFrame {
                     .addComponent(btnXemChiTietLuongCaNhan)
                     .addComponent(btnSuaThongTinCaNhan, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(xemThongTinNhanVien)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(xemThongTinPhuCap)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnXemChiTietLuongCaNhan1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,12 +157,18 @@ public class TrangChuGiamDocUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            XuLyFile.luuTaiKhoan(new TaiKhoan("", ""));
+            new DangNhapUI().onStartGUI();
+        } catch (IOException ex) {
+            Logger.getLogger(TrangChuGiamDocUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
     private void btnXemChiTietLuongCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietLuongCaNhanActionPerformed
-        XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI();
-        xemChiTietLuongCaNhanUI.setData(data);
+        XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI(data);
         xemChiTietLuongCaNhanUI.onStartGUI();
         dispose();
     }//GEN-LAST:event_btnXemChiTietLuongCaNhanActionPerformed
@@ -175,6 +192,10 @@ public class TrangChuGiamDocUI extends javax.swing.JFrame {
     private void btnXemChiTietLuongCaNhan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietLuongCaNhan2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnXemChiTietLuongCaNhan2ActionPerformed
+
+    private void xemThongTinNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xemThongTinNhanVienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_xemThongTinNhanVienActionPerformed
 
     public void onStartGUI() {
         /* Set the Nimbus look and feel */
@@ -214,8 +235,8 @@ public class TrangChuGiamDocUI extends javax.swing.JFrame {
     private javax.swing.JButton btnXemChiTietLuongCaNhan;
     private javax.swing.JButton btnXemChiTietLuongCaNhan1;
     private javax.swing.JButton btnXemChiTietLuongCaNhan2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton xemThongTinNhanVien;
+    private javax.swing.JButton xemThongTinPhuCap;
     // End of variables declaration//GEN-END:variables
 }

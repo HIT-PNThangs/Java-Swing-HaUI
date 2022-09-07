@@ -6,6 +6,8 @@ package com.nhom7.quanlyluongthuong.View.BaoTriThongTinTaiKhoan;
 
 import com.nhom7.quanlyluongthuong.Controller.BaoTriThongTinTaiKhoanController;
 import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
+import com.nhom7.quanlyluongthuong.View.DangKy.TaoTaiKhoanBoiAdminUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin.TrangChuAdminUI;
 import com.nhom7.quanlyluongthuong.View.TuyChonUI;
 import com.nhom7.quanlyluongthuong.util.IOptionEvent;
 import com.nhom7.quanlyluongthuong.util.IUpdateTableEvent;
@@ -26,14 +28,11 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
     private BaoTriThongTinTaiKhoanController controller;
     private HashMap<String, Object> data;
     
-    public void setData(HashMap<String, Object> data) {
-        this.data = data;
-    }
-    
     /**
      * Creates new form BaoTriThongTinTaiKhoanUI
      */
-    public BaoTriThongTinTaiKhoanUI() throws SQLException {
+    public BaoTriThongTinTaiKhoanUI(HashMap<String, Object> data) throws SQLException {
+        this.data = data;
         initComponents();
         setLocationRelativeTo(null);
         txtTenTaiKhoan.requestFocus();
@@ -92,6 +91,7 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
         btnThemTaiKhoan = new javax.swing.JButton();
         btnSuaTaiKhoan = new javax.swing.JButton();
         btnXoaTaiKhoan = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bảo Trì Thông Tin Tài Khoản");
@@ -187,6 +187,13 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
             }
         });
 
+        back.setText("Quay lại");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,17 +221,8 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
                                     .addComponent(txtTenTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                                     .addComponent(cboQuyen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(230, 230, 230))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThemTaiKhoan)
                         .addGap(18, 18, 18)
                         .addComponent(btnSuaTaiKhoan)
@@ -232,13 +230,25 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
                         .addComponent(btnXoaTaiKhoan)
                         .addGap(18, 18, 18)
                         .addComponent(btnXoaThongTin)
-                        .addGap(103, 103, 103))))
+                        .addGap(63, 63, 63))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(back)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(190, 190, 190))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -289,28 +299,8 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tblTaiKhoanMouseClicked
 
     private void btnThemTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTaiKhoanActionPerformed
-        TuyChonUI tuyChonUI = new TuyChonUI();
-        tuyChonUI.setOnHandleOptionEvent(new IOptionEvent() {
-            @Override
-            public void onAcceptEvent() {
-                if(validateData()) {
-                    TaiKhoan taiKhoan = new TaiKhoan();
-                    taiKhoan.setTaiKhoan(txtTenTaiKhoan.getText());
-                    taiKhoan.setMatKhau(txtMatKhau.getText());
-                    taiKhoan.setQuyen(cboQuyen.getSelectedIndex());
-                    
-                    clearAllInfo();
-                    JOptionPane.showMessageDialog(getContentPane(), "Thêm Tài Khoản thành công!!");
-                }
-            }
-
-            @Override
-            public void onCancelEvent() {
-                clearAllInfo();
-            } 
-        });
-        
-       tuyChonUI.onCallGUI(getContentPane(), "Bạn có chắc chắn muốn thêm Tài Khoản này không ?", "Thông Báo");
+        new TaoTaiKhoanBoiAdminUI(data).onStartGUI();
+        dispose();
     }//GEN-LAST:event_btnThemTaiKhoanActionPerformed
     private boolean validateData() {
         String message = "";
@@ -428,6 +418,12 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
         tuyChonUI.onCallGUI(getContentPane(), "Bạn có chắc chắn muốn xóa thông tin này không ?", "Thông Báo");
     }//GEN-LAST:event_btnXoaThongTinActionPerformed
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        new TrangChuAdminUI(data).onStartGUI();
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
+
     public void onStartGUI() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -456,7 +452,7 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new BaoTriThongTinTaiKhoanUI().setVisible(true);
+                    new BaoTriThongTinTaiKhoanUI(data).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(BaoTriThongTinTaiKhoanUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -465,6 +461,7 @@ public class BaoTriThongTinTaiKhoanUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton btnSuaTaiKhoan;
     private javax.swing.JButton btnThemTaiKhoan;
     private javax.swing.JButton btnXoaTaiKhoan;

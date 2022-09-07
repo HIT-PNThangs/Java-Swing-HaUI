@@ -4,6 +4,12 @@
  */
 package com.nhom7.quanlyluongthuong.View.XemChiTietLuongCaNhan;
 
+import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuAdmin.TrangChuAdminUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuGiamDoc.TrangChuGiamDocUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuKeToan.TrangChuKeToanUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuNguoiDung.TrangChuNguoiDungUI;
+import com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuNhanSu.TrangChuNhanSuUI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
@@ -14,12 +20,9 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class XemChiTietLuongCaNhanUI extends javax.swing.JFrame {
     private HashMap<String, Object> data;
-    
-    public void setData(HashMap<String, Object> data) {
-        this.data = data;
-    }
    
-    public XemChiTietLuongCaNhanUI() {
+    public XemChiTietLuongCaNhanUI(HashMap<String, Object> data) {
+        this.data = data;
         initComponents();
         setLocationRelativeTo(null);
         generateComboBoxData();
@@ -43,6 +46,7 @@ public class XemChiTietLuongCaNhanUI extends javax.swing.JFrame {
         btnXemLuongTheoThoiGian1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Xem Chi Tiết Lương Cá Nhân");
@@ -89,6 +93,13 @@ public class XemChiTietLuongCaNhanUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        back.setText("Quay lại");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,10 +113,15 @@ public class XemChiTietLuongCaNhanUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(back)))
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
@@ -120,7 +136,9 @@ public class XemChiTietLuongCaNhanUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(back))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -140,6 +158,38 @@ public class XemChiTietLuongCaNhanUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        int quyen = Integer.parseInt(data.get("Quyen").toString());
+        switch (quyen) {
+                case 0 -> {
+                    TrangChuAdminUI trangChuAdminUI = new TrangChuAdminUI(data);
+                    trangChuAdminUI.onStartGUI();
+                }
+                
+                case 1 -> {
+                    TrangChuNguoiDungUI trangChuNguoiDungUI = new TrangChuNguoiDungUI(data);
+                    trangChuNguoiDungUI.onStartGUI();
+                }
+                
+                case 2 -> {
+                    TrangChuKeToanUI trangChuKeToanUI = new TrangChuKeToanUI(data);
+                    trangChuKeToanUI.onStartGUI();
+                }
+                
+                case 3 -> {
+                    TrangChuNhanSuUI trangChuNhanSuUI = new TrangChuNhanSuUI(data);
+                    trangChuNhanSuUI.onStartGUI();
+                }
+                
+                case 4 -> {
+                    TrangChuGiamDocUI trangChuGiamDocUI = new TrangChuGiamDocUI(data);
+                    trangChuGiamDocUI.onStartGUI();
+                }
+            }
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
 
     
     public void onStartGUI() {
@@ -170,7 +220,7 @@ public class XemChiTietLuongCaNhanUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new XemChiTietLuongCaNhanUI().setVisible(true);
+                new XemChiTietLuongCaNhanUI(data).setVisible(true);
             }
         });
     }
@@ -192,6 +242,7 @@ public class XemChiTietLuongCaNhanUI extends javax.swing.JFrame {
        cboNam.setModel(new DefaultComboBoxModel<>(nam.toArray(new String[nam.size()])));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton btnXemLuongTheoThoiGian;
     private javax.swing.JButton btnXemLuongTheoThoiGian1;
     private javax.swing.JComboBox<String> cboNam;

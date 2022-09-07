@@ -1,7 +1,11 @@
 package com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuNhanSu;
 
+import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
+import com.nhom7.quanlyluongthuong.View.DangNhap.DangNhapUI;
 import com.nhom7.quanlyluongthuong.View.QuanLyThongTinCaNhan.QuanLyThongTinCaNhanUI;
 import com.nhom7.quanlyluongthuong.View.XemChiTietLuongCaNhan.XemChiTietLuongCaNhanUI;
+import com.nhom7.quanlyluongthuong.util.XuLyFile;
+import java.io.IOException;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -10,15 +14,11 @@ import java.util.logging.Logger;
 
 public class TrangChuNhanSuUI extends javax.swing.JFrame {
     private HashMap<String, Object> data;
-    
-    public void setData(HashMap<String, Object> data) {
-        this.data = data;
-    }
-
     public TrangChuNhanSuUI(HashMap<String, Object> data) {
         this.data = data;
         initComponents();
         setLocationRelativeTo(null);
+        lblUsername.setText("Xin chào, " + data.get("TenTaiKhoan"));
     }
 
     @SuppressWarnings("unchecked")
@@ -114,8 +114,7 @@ public class TrangChuNhanSuUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXemChiTietLuongCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietLuongCaNhanActionPerformed
-        XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI();
-        xemChiTietLuongCaNhanUI.setData(data);
+        XemChiTietLuongCaNhanUI xemChiTietLuongCaNhanUI = new XemChiTietLuongCaNhanUI(data);
         xemChiTietLuongCaNhanUI.onStartGUI();
         dispose();
     }//GEN-LAST:event_btnXemChiTietLuongCaNhanActionPerformed
@@ -124,7 +123,14 @@ public class TrangChuNhanSuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChamCongGiangDayActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            XuLyFile.luuTaiKhoan(new TaiKhoan("", ""));
+            new DangNhapUI().onStartGUI();
+        } catch (IOException ex) {
+            Logger.getLogger(TrangChuNhanSuUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
     private void btnSuaThongTinCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThongTinCaNhanActionPerformed
@@ -143,6 +149,7 @@ public class TrangChuNhanSuUI extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        lblUsername.setText("Xin chào, 1");
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -160,8 +167,6 @@ public class TrangChuNhanSuUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TrangChuNhanSuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        lblUsername.setText("Xin chào, " + data.get("TenTaiKhoan"));
         
         java.awt.EventQueue.invokeLater(() -> {
             new TrangChuNhanSuUI(data).setVisible(true);
