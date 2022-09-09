@@ -1,6 +1,8 @@
 package com.nhom7.quanlyluongthuong.View.TrangChu.TrangChuNhanSu;
 
+import com.nhom7.quanlyluongthuong.Model.ChamCong;
 import com.nhom7.quanlyluongthuong.Model.TaiKhoan;
+import com.nhom7.quanlyluongthuong.View.ChamCongGiangDay.ChamCongGiangDayUI;
 import com.nhom7.quanlyluongthuong.View.DangNhap.DangNhapUI;
 import com.nhom7.quanlyluongthuong.View.QuanLyThongTinCaNhan.QuanLyThongTinCaNhanUI;
 import com.nhom7.quanlyluongthuong.View.XemChiTietLuongCaNhan.XemChiTietLuongCaNhanUI;
@@ -120,6 +122,7 @@ public class TrangChuNhanSuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXemChiTietLuongCaNhanActionPerformed
 
     private void btnChamCongGiangDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChamCongGiangDayActionPerformed
+        new ChamCongGiangDayUI().onStartGUI();
     }//GEN-LAST:event_btnChamCongGiangDayActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
